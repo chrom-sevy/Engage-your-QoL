@@ -11,6 +11,7 @@ This mod pack engages with your QoL and aims to save you time and remove some an
     b. click on this page's `code<>` and get the zip file
 4. reboot your game
 
-# Credits
+# Mods
+- Easy Exercise by me
 - [Unlock Growth Type select on NG](https://gamebanana.com/mods/426329) by DeathChaos
 - [No DLC Gift Items](https://gamebanana.com/mods/431356) by DeathChaos
