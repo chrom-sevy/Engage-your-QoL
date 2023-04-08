@@ -26,6 +26,9 @@ function Startup()
 	WinRuleSetMID("MID_RULE_M000_WIN")
 	LoseRuleSetMID( "MID_RULE_COMMON_LOSE" )
 
+	ConfigSetSupportScene( CONFIG_ANIM_OFF )
+	ConfigSetBattleScene( CONFIG_ANIM_OFF )
+
 	フラグ登録()
 end
 
