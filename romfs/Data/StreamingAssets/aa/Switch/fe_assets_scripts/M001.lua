@@ -112,13 +112,13 @@ end
 function Opening()
 	Log("Opening")
 	
-	Movie("Scene01")
+	--Movie("Scene01")
 	SkipEscape()
 		
 	PuppetDemo("M001", "MID_OP2")
 	PuppetDemo("M001", "MID_OP3")
 	
-	Movie("Scene02")
+	--Movie("Scene02")
 	SkipEscape()
 end
 
@@ -389,12 +389,12 @@ function イベント_マルスとシンクロ()
 	
 	FadeOutAndWait(FADE_FAST)
 			
-			Movie("Scene03")
+			--Movie("Scene03")
 			SkipEscape()
 			
 			マルスの顕現とシンクロ()
 			
-			Movie("Scene04")
+			--Movie("Scene04")
 			SkipEscape()
 			
 			-- カメラ移動
@@ -449,7 +449,7 @@ end
 
 function マルスの顕現とシンクロ()
 	
-	Movie("S04")
+	--Movie("S04")
 	SkipEscape()
 	
 	-- 神将作成・バディ化
