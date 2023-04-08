@@ -71,8 +71,8 @@ function イベント登録() -- en: Event registration
 	EventEntryUnitCommandPrepare(命中補正設定, "PID_ヴァンドレ",	g_key_hitControl_vandre,	"PID_ヴァンドレ",	g_key_hitControl_vandre)
 	EventEntryTurn(命中補正設定, 1, 1, FORCE_ENEMY,		g_key_hitControl_lueur,		g_pid_lueur,		g_key_hitControl_lueur)
 	EventEntryTurn(命中補正設定, 1, 1, FORCE_ENEMY,		g_key_hitControl_vandre,	"PID_ヴァンドレ",	g_key_hitControl_vandre)
-	EventEntryTurn(命中補正解除, 2, 2, FORCE_PLAYER,	g_key_hitControl_lueur,		g_pid_lueur)	
-	EventEntryTurn(命中補正解除, 2, 2, FORCE_PLAYER,	g_key_hitControl_vandre,	"PID_ヴァンドレ")
+	EventEntryTurn(ClearAvoHitRig, 2, 2, FORCE_PLAYER,	g_key_hitControl_lueur,		g_pid_lueur)	
+	EventEntryTurn(ClearAvoHitRig, 2, 2, FORCE_PLAYER,	g_key_hitControl_vandre,	"PID_ヴァンドレ")
 	
 	
 	-- イベント登録 
@@ -145,16 +145,16 @@ end
 
 -- -----------------------------------
 
-function 命中補正_戦闘カウント(pid, flag, count)
+function 命中補正_戦闘カウント(pid, flag, count) -- en: Hit correction battle count
 	VariableSet(flag, 0)
 	
 	if VariableIsExist(count) then
 		local num = VariableGet(count)
 		num = num + 1
 		
-		-- ２回目ならスキル解除
+		-- ２回目ならスキル解除 -- en: If it is the second time, the skill is released
 		if ( num >= 2 ) then
-			命中補正解除(pid)
+			ClearAvoHitRig(pid)
 			VariableSet(flag, 1)
 		end
 		
@@ -185,7 +185,7 @@ function 命中補正設定(pid, flag)
 	スキル装備(pid, sid_on)
 end
 
-function 命中補正解除(pid)
+function ClearAvoHitRig(pid)
 	スキル解除(pid, "SID_相手の命中０")
 	スキル解除(pid, "SID_相手の命中１００")
 end
