@@ -67,31 +67,31 @@ function イベント登録() -- en: Event registration
 	-- リュールとヴァンドレの命中スキル操作 -- en: Hit skill operation of Lueur and Vandre
 	EventEntryBattleAfter(命中補正_戦闘カウント, g_pid_lueur,		FORCE_PLAYER, "", FORCE_ENEMY, true, g_key_hitControl_lueur,	g_pid_lueur,		g_key_hitControl_lueur, "戦闘回数_リュール")	-- 戦闘回数をカウント
 	EventEntryBattleAfter(命中補正_戦闘カウント, "PID_ヴァンドレ",	FORCE_PLAYER, "", FORCE_ENEMY, true, g_key_hitControl_vandre,	"PID_ヴァンドレ",	g_key_hitControl_vandre, "戦闘回数_ヴァンドレ")	-- 戦闘回数をカウント
-	EventEntryUnitCommandPrepare(命中補正設定, g_pid_lueur,			g_key_hitControl_lueur,		g_pid_lueur,		g_key_hitControl_lueur)
-	EventEntryUnitCommandPrepare(命中補正設定, "PID_ヴァンドレ",	g_key_hitControl_vandre,	"PID_ヴァンドレ",	g_key_hitControl_vandre)
-	EventEntryTurn(命中補正設定, 1, 1, FORCE_ENEMY,		g_key_hitControl_lueur,		g_pid_lueur,		g_key_hitControl_lueur)
-	EventEntryTurn(命中補正設定, 1, 1, FORCE_ENEMY,		g_key_hitControl_vandre,	"PID_ヴァンドレ",	g_key_hitControl_vandre)
+	EventEntryUnitCommandPrepare(RigAvoOnTerrain, g_pid_lueur,			g_key_hitControl_lueur,		g_pid_lueur,		g_key_hitControl_lueur)
+	EventEntryUnitCommandPrepare(RigAvoOnTerrain, "PID_ヴァンドレ",	g_key_hitControl_vandre,	"PID_ヴァンドレ",	g_key_hitControl_vandre)
+	EventEntryTurn(RigAvoOnTerrain, 1, 1, FORCE_ENEMY,		g_key_hitControl_lueur,		g_pid_lueur,		g_key_hitControl_lueur)
+	EventEntryTurn(RigAvoOnTerrain, 1, 1, FORCE_ENEMY,		g_key_hitControl_vandre,	"PID_ヴァンドレ",	g_key_hitControl_vandre)
 	EventEntryTurn(ClearAvoHitRig, 2, 2, FORCE_PLAYER,	g_key_hitControl_lueur,		g_pid_lueur)	
 	EventEntryTurn(ClearAvoHitRig, 2, 2, FORCE_PLAYER,	g_key_hitControl_vandre,	"PID_ヴァンドレ")
 	
 	
 	-- イベント登録 
 	EventEntryTurn(		イベント_私も戦います,			1, 1, FORCE_PLAYER)
-	EventEntryTurnAfter(チュートリアル_地形効果,		1, 1, FORCE_PLAYER)
+	-- EventEntryTurnAfter(チュートリアル_地形効果,		1, 1, FORCE_PLAYER)
 	
-	EventEntryPickup(チュートリアル_戦闘スタイル, "PID_ヴァンドレ", "チュートリアル_戦闘スタイル_済")
+	-- EventEntryPickup(チュートリアル_戦闘スタイル, "PID_ヴァンドレ", "チュートリアル_戦闘スタイル_済")
 	
-	EventEntryTurnAfter(チュートリアル_回復,			2, 2, FORCE_PLAYER, g_key_tutorial_recovery)
+	-- EventEntryTurnAfter(チュートリアル_回復,			2, 2, FORCE_PLAYER, g_key_tutorial_recovery)
 	
-	EventEntryTurnAfter(イベント_逃げよう, 1, 1, FORCE_ALLY, "ターン後イベント_逃げよう")
-	EventEntryBattleTalk(Talk, "", FORCE_ENEMY, "PID_フラン", FORCE_ALLY, false, "戦闘前イベント_フラン済", "MID_EV6")
-	EventEntryBattleTalk(Talk, "", FORCE_ENEMY, "PID_クラン", FORCE_ALLY, false, "戦闘前イベント_クラン済", "MID_EV8")
+	-- EventEntryTurnAfter(イベント_逃げよう, 1, 1, FORCE_ALLY, "ターン後イベント_逃げよう")
+	-- EventEntryBattleTalk(Talk, "", FORCE_ENEMY, "PID_フラン", FORCE_ALLY, false, "戦闘前イベント_フラン済", "MID_EV6")
+	-- EventEntryBattleTalk(Talk, "", FORCE_ENEMY, "PID_クラン", FORCE_ALLY, false, "戦闘前イベント_クラン済", "MID_EV8")
 	
 	EventEntryDie( イベント前に敵を全滅,	"", FORCE_ENEMY, condition_イベント前に敵を全滅 )
 	EventEntryTurnEnd(	イベント_マルスとシンクロ,	-1, -1, FORCE_ENEMY,	condition_イベント_マルスとシンクロ)
-	EventEntryTurnAfter(マルスの能力紹介,			-1, -1, FORCE_PLAYER,	condition_マルスの能力紹介)
+	-- EventEntryTurnAfter(マルスの能力紹介,			-1, -1, FORCE_PLAYER,	condition_マルスの能力紹介)
 	
-	EventEntryPickup(チュートリアル_紋章士マルス, g_pid_lueur, condition_チュートリアル_紋章士マルス)
+	-- EventEntryPickup(チュートリアル_紋章士マルス, g_pid_lueur, condition_チュートリアル_紋章士マルス)
 	
 	EventEntryDie(VariableSet,			"", FORCE_ENEMY, condition_勝利判定, "勝利", 1)
 	
@@ -113,13 +113,13 @@ function Opening()
 	Log("Opening")
 	
 	--Movie("Scene01")
-	SkipEscape()
+	-- SkipEscape()
 		
-	PuppetDemo("M001", "MID_OP2")
-	PuppetDemo("M001", "MID_OP3")
+	-- PuppetDemo("M001", "MID_OP2")
+	-- PuppetDemo("M001", "MID_OP3")
 	
 	--Movie("Scene02")
-	SkipEscape()
+	-- SkipEscape()
 end
 
 function MapOpening()
@@ -162,7 +162,7 @@ function 命中補正_戦闘カウント(pid, flag, count) -- en: Hit correction
 	end
 end
 
-function 命中補正設定(pid, flag)
+function RigAvoOnTerrain(pid, flag)
 	VariableSet(flag, 0)
 	
 	local sid_on = nil
@@ -196,7 +196,7 @@ function イベント_私も戦います()
 	Dispos("Hero", DISPOS_FLAG_NONE)
 	Yield()
 	
-	Talk("MID_EV1")
+	--	Talk("MID_EV1")
 	
 	-- スキル設定
 	local sid = "SID_相手の命中１００"
@@ -213,16 +213,16 @@ end
 
 function チュートリアル_地形効果()
 	
-	Talk("MID_EV2")
+--	Talk("MID_EV2")
 	
 	CursorSetPos( 7, 3 )
 	MapCameraWait()
 	
 	CursorAnimeCreate( 6, 3, "W2H1" )
-	Talk("MID_EV3")
+--	Talk("MID_EV3")
 	CursorAnimeDelete()
 	
-	Tutorial("TUTID_地形効果")
+--	Tutorial("TUTID_地形効果")
 	
 end
 
@@ -232,8 +232,8 @@ function チュートリアル_戦闘スタイル()
 	CursorSetPos_FromPid(MindGetUnit())
 	MapCameraWait()
 	
-	Tutorial( "TUTID_戦闘スタイル" )
-	Tutorial( "TUTID_騎馬スタイル" )
+--	Tutorial( "TUTID_戦闘スタイル" )
+--	Tutorial( "TUTID_騎馬スタイル" )
 end
 
 -- -----------------------------------
@@ -311,12 +311,12 @@ function チュートリアル_回復()
 	local hp = UnitGetHp(g_pid_lueur)
 	
 	if ( maxHp - hp ) > 0 then
-		Talk("MID_EV4")
+	--	Talk("MID_EV4")
 	else
-		Talk("MID_EV5")
+	--	Talk("MID_EV5")
 	end
 	
-	Tutorial("TUTID_回復")
+--	Tutorial("TUTID_回復")
 	
 	VariableSet( "禁止_持ち物", 0 )
 	VariableSet( "禁止_交換", 0 )
@@ -326,7 +326,7 @@ end
 
 function イベント_逃げよう()
 	CursorSetPos_FromPid("PID_フラン")
-	Talk("MID_EV7")
+--	Talk("MID_EV7")
 end
 
 -- -----------------------------------
@@ -385,17 +385,17 @@ function イベント_マルスとシンクロ()
 	
 	CursorSetPos_FromPid(g_pid_lueur)
 	
-	Talk("MID_EV9")
+--	Talk("MID_EV9")
 	
 	FadeOutAndWait(FADE_FAST)
 			
 			--Movie("Scene03")
-			SkipEscape()
+			-- SkipEscape()
 			
 			マルスの顕現とシンクロ()
 			
 			--Movie("Scene04")
-			SkipEscape()
+			-- SkipEscape()
 			
 			-- カメラ移動
 			CursorSetPos(6, 11)
@@ -450,7 +450,7 @@ end
 function マルスの顕現とシンクロ()
 	
 	--Movie("S04")
-	SkipEscape()
+	-- SkipEscape()
 	
 	-- 神将作成・バディ化
 	GodUnitCreate("GID_マルス")
@@ -501,8 +501,8 @@ function condition_マルスの能力紹介()
 end
 
 function マルスの能力紹介()
-	Talk("MID_EV12")
-	Tutorial( "TUTID_シンクロ" )
+--	Talk("MID_EV12")
+--	Tutorial( "TUTID_シンクロ" )
 	
 	VariableSet( g_key_tutorial_marth1, 1 )
 end
@@ -523,7 +523,7 @@ function condition_チュートリアル_紋章士マルス()
 end
 
 function チュートリアル_紋章士マルス()
-	Tutorial("TUTID_紋章士マルス")
+--	Tutorial("TUTID_紋章士マルス")
 	VariableSet( g_key_tutorial_marth2, 1 )
 end
 
