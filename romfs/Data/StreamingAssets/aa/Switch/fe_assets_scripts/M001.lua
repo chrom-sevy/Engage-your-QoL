@@ -81,7 +81,7 @@ function イベント登録() -- en: Event registration
 	
 	-- EventEntryPickup(チュートリアル_戦闘スタイル, "PID_ヴァンドレ", "チュートリアル_戦闘スタイル_済")
 	
-	-- EventEntryTurnAfter(チュートリアル_回復,			2, 2, FORCE_PLAYER, g_key_tutorial_recovery)
+	EventEntryTurnAfter(チュートリアル_回復,			2, 2, FORCE_PLAYER, g_key_tutorial_recovery)
 	
 	-- EventEntryTurnAfter(イベント_逃げよう, 1, 1, FORCE_ALLY, "ターン後イベント_逃げよう")
 	-- EventEntryBattleTalk(Talk, "", FORCE_ENEMY, "PID_フラン", FORCE_ALLY, false, "戦闘前イベント_フラン済", "MID_EV6")
@@ -305,21 +305,21 @@ end
 -- -----------------------------------
 
 function チュートリアル_回復()
-	CursorSetPos_FromPid(g_pid_lueur)
+	-- CursorSetPos_FromPid(g_pid_lueur)
 	
-	local maxHp = UnitGetCapability(g_pid_lueur, CAPABILITY_HP, false)
-	local hp = UnitGetHp(g_pid_lueur)
+	-- local maxHp = UnitGetCapability(g_pid_lueur, CAPABILITY_HP, false)
+	-- local hp = UnitGetHp(g_pid_lueur)
 	
-	if ( maxHp - hp ) > 0 then
-	--	Talk("MID_EV4")
-	else
-	--	Talk("MID_EV5")
-	end
+	-- if ( maxHp - hp ) > 0 then
+	-- --	Talk("MID_EV4")
+	-- else
+	-- --	Talk("MID_EV5")
+	-- end
 	
 --	Tutorial("TUTID_回復")
 	
-	VariableSet( "禁止_持ち物", 0 )
-	VariableSet( "禁止_交換", 0 )
+	VariableSet( "禁止_持ち物", 0 ) -- en: "Prohibit_Inventory"
+	VariableSet( "禁止_交換", 0 ) -- en: "Prohibit_Trade"
 end
 
 -- -----------------------------------
