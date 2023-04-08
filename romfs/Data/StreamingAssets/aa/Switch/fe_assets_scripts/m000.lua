@@ -50,12 +50,12 @@ function イベント登録()
 	EventEntryTurnAfter(早く敵に近づこう,		2, -1, FORCE_PLAYER, condition_早く敵に近づこう)
 	EventEntryTurnAfter(早く攻撃しよう,			3, -1, FORCE_PLAYER, condition_早く攻撃しよう)
 	
-	EventEntryBattleTalk(戦闘前会話_リュール_ソンブル, g_pid_lueur, FORCE_PLAYER, "PID_M000_ソンブル", FORCE_ENEMY, true, g_key_battle)
+	--EventEntryBattleTalk(戦闘前会話_リュール_ソンブル, g_pid_lueur, FORCE_PLAYER, "PID_M000_ソンブル", FORCE_ENEMY, true, g_key_battle)
 	
 	EventEntryTurnAfter(エンゲージしよう,		3, -1, FORCE_PLAYER, condition_エンゲージしよう )
 	EventEntryEngageBefore( エンゲージ, g_pid_lueur, "エンゲージ_済" )
 	
-	EventEntryDie(Talk, "PID_M000_ソンブル", FORCE_ENEMY, condition_true, "MID_BT2")
+	--EventEntryDie(Talk, "PID_M000_ソンブル", FORCE_ENEMY, condition_true, "MID_BT2")
 end
 
 function Cleanup()
@@ -70,10 +70,10 @@ function Opening()
 	
 	Log("Opening")
 	
-	FadeInAndWait(FADE_SLOW)
-		Movie("S02")
-		SkipEscape()
-	FadeOutAndWait(FADE_NORMAL)
+	-- FadeInAndWait(FADE_SLOW)
+	-- 	Movie("S02")
+	-- 	SkipEscape()
+	-- FadeOutAndWait(FADE_NORMAL)
 	
 end
 
@@ -94,18 +94,18 @@ function MapOpening()
 	
 	UnitMovePos(g_pid_lueur, 5, 4, MOVE_FLAG_NONE)
 	UnitMoveWait()
-	WaitTime(0.5)
+	-- WaitTime(0.5)
 	
-	CursorSetPos_FromPid("PID_M000_ソンブル")
-	MapCameraWait()
-	WaitTime(0.5)
-	Talk("MID_OP2")
-	WaitTime(1.0)
-	Talk("MID_OP3")
+	-- CursorSetPos_FromPid("PID_M000_ソンブル")
+	-- MapCameraWait()
+	-- WaitTime(0.5)
+	-- Talk("MID_OP2")
+	-- WaitTime(1.0)
+	-- Talk("MID_OP3")
 	
-	CursorAnimeCreate_FromPid( "PID_M000_ソンブル" )
-		WinRule()
-	CursorAnimeDelete()
+	-- CursorAnimeCreate_FromPid( "PID_M000_ソンブル" )
+	-- 	WinRule()
+	-- CursorAnimeDelete()
 end
 
 -- -----------------------------------
@@ -117,22 +117,22 @@ end
 -- -----------------------------------
 
 function 移動しよう()
-	Talk("MID_EV1")
-	Tutorial("TUTID_移動")
+	--Talk("MID_EV1")
+	--Tutorial("TUTID_移動")
 end
 
 -- -----------------------------------
 
 function チュートリアル_ユニットコマンド()
-	Tutorial("TUTID_ユニットコマンド")
+	--Tutorial("TUTID_ユニットコマンド")
 end
 
 -- -----------------------------------
 
 function ターン交代()
 	CursorSetPos_FromPid_DistanceModeNear("PID_M000_ソンブル")
-	Talk("MID_EV2")
-	Tutorial("TUTID_フェイズチェンジ")
+	--Talk("MID_EV2")
+	--Tutorial("TUTID_フェイズチェンジ")
 end
 
 -- -----------------------------------
@@ -155,7 +155,7 @@ function condition_早く敵に近づこう()
 end
 
 function 早く敵に近づこう()
-	Talk("MID_EV5")
+	--Talk("MID_EV5")
 	VariableSet(g_key_go_closer, 1)
 end
 
@@ -178,8 +178,8 @@ function condition_攻撃しよう()
 end
 
 function 攻撃しよう()
-	Talk("MID_EV3")
-	Tutorial("TUTID_攻撃")
+	--Talk("MID_EV3")
+	--Tutorial("TUTID_攻撃")
 	VariableSet(g_key_attack, 1)
 end
 
@@ -200,7 +200,7 @@ function condition_早く攻撃しよう()
 end
 
 function 早く攻撃しよう()
-	Talk("MID_EV6")
+	--Talk("MID_EV6")
 	VariableSet(g_key_go_attack, 1)
 end
 
@@ -209,7 +209,7 @@ end
 function 戦闘前会話_リュール_ソンブル()
 	
 	VariableSet(g_key_go_attack, 1)
-	Talk("MID_BT1")
+	--Talk("MID_BT1")
 	
 end
 
@@ -231,8 +231,8 @@ end
 
 function エンゲージしよう()
 	
-	Talk("MID_EV7")
-	Tutorial("TUTID_エンゲージ")
+	--Talk("MID_EV7")
+	--Tutorial("TUTID_エンゲージ")
 	
 	VariableSet( "禁止_攻撃", 1 )
 	VariableSet( "禁止_待機", 1 )
@@ -244,10 +244,10 @@ end
 -- -----------------------------------
 
 function エンゲージ()
-	FadeOutAndWait(FADE_FAST)
-	Movie("S03")
-	UnitSetEngaging( g_pid_lueur, true )
-	FadeInAndWait(FADE_FAST)
+	-- FadeOutAndWait(FADE_FAST)
+	-- Movie("S03")
+	-- UnitSetEngaging( g_pid_lueur, true )
+	-- FadeInAndWait(FADE_FAST)
 	
 	エンゲージ技使おう()
 end
@@ -257,8 +257,8 @@ function エンゲージ技使おう()
 	-- ここでファルシオンに持ち替え
 	UnitSetItemEquip(g_pid_lueur, "IID_マルス_ファルシオン")
 	
-	Talk( "MID_EV4" )
-	Tutorial( "TUTID_エンゲージ技" )
+	--Talk( "MID_EV4" )
+	--Tutorial( "TUTID_エンゲージ技" )
 	
 	VariableSet(g_key_engage_attack, 1)
 	
