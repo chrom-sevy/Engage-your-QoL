@@ -20,15 +20,15 @@ function Startup()
 	
 	
 	if VariableGet( g_key_tutorial_recovery ) == 0 then
-		VariableSet( "禁止_持ち物", 2 )
-		VariableSet( "禁止_交換", 2 )
+		VariableSet( "禁止_持ち物", 2 ) -- en: ban item
+		VariableSet( "禁止_交換", 2 ) -- en: ban trade
 	end
 	
-	VariableSet( "禁止_輸送隊", 2 )
+	VariableSet( "禁止_輸送隊", 2 ) -- en: ban convoy
 	
-	VariableSet( "禁止_チェインアタック", 1 )
-	VariableSet( "禁止_チェインガード", 1 )
-	VariableSet( "禁止_ブレイク", 1 )
+	VariableSet( "禁止_チェインアタック", 1 ) -- en: ban Chain Attack
+	VariableSet( "禁止_チェインガード", 1 ) -- en: ban Chain Guard
+	VariableSet( "禁止_ブレイク", 1 ) -- en: ban Break
 	
 	
 	-- 勝利条件の設定
@@ -37,7 +37,7 @@ function Startup()
 	
 end
 
-function フラグ登録()
+function フラグ登録() -- en: Flag registration
 	VariableEntry( g_key_tutorial_recovery,	0 )
 	VariableEntry( "戦闘回数_リュール",		0 )
 	VariableEntry( "戦闘回数_ヴァンドレ",	0 )
@@ -50,7 +50,7 @@ function フラグ登録()
 	VariableEntry( g_key_tutorial_marth2,	0 )
 end
 
-function イベント登録()
+function イベント登録() -- en: Event registration
 	
 	-- AI関連
 	EventEntryTurn(ターン１_敵AI設定,	1, 1, FORCE_ENEMY)
@@ -60,11 +60,11 @@ function イベント登録()
 	EventEntryTurn(ターン３_敵AI設定,	3, 3, FORCE_ENEMY)
 	
 	
-	-- 毎ターン実行（この章だけ）
+	-- 毎ターン実行（この章だけ）-- en: Every turn execution (only this chapter)
 	EventEntryTurn(リュール行動予約, -1, -1, FORCE_PLAYER)
 	
 	
-	-- リュールとヴァンドレの命中スキル操作
+	-- リュールとヴァンドレの命中スキル操作 -- en: Hit skill operation of Lueur and Vandre
 	EventEntryBattleAfter(命中補正_戦闘カウント, g_pid_lueur,		FORCE_PLAYER, "", FORCE_ENEMY, true, g_key_hitControl_lueur,	g_pid_lueur,		g_key_hitControl_lueur, "戦闘回数_リュール")	-- 戦闘回数をカウント
 	EventEntryBattleAfter(命中補正_戦闘カウント, "PID_ヴァンドレ",	FORCE_PLAYER, "", FORCE_ENEMY, true, g_key_hitControl_vandre,	"PID_ヴァンドレ",	g_key_hitControl_vandre, "戦闘回数_ヴァンドレ")	-- 戦闘回数をカウント
 	EventEntryUnitCommandPrepare(命中補正設定, g_pid_lueur,			g_key_hitControl_lueur,		g_pid_lueur,		g_key_hitControl_lueur)
@@ -75,7 +75,7 @@ function イベント登録()
 	EventEntryTurn(命中補正解除, 2, 2, FORCE_PLAYER,	g_key_hitControl_vandre,	"PID_ヴァンドレ")
 	
 	
-	-- イベント登録
+	-- イベント登録 
 	EventEntryTurn(		イベント_私も戦います,			1, 1, FORCE_PLAYER)
 	EventEntryTurnAfter(チュートリアル_地形効果,		1, 1, FORCE_PLAYER)
 	
