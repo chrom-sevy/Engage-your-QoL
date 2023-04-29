@@ -26,9 +26,9 @@ function イベント登録()
 	EventEntryPickup(チュートリアル_特効,				"PID_エーティエ", "特効チュートリアル_済")
 	
 	-- ボス
-	EventEntryBattleTalk(Talk, g_pid_lueur,	FORCE_PLAYER, "PID_M003_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_リュール_済",	"MID_BT2")
-	EventEntryBattleTalk(Talk, "",			FORCE_PLAYER, "PID_M003_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_済",			"MID_BT1")
-	EventEntryDie(Talk, "PID_M003_イルシオン兵_ボス", FORCE_ENEMY, conidtion_true, "MID_BT3")
+	-- EventEntryBattleTalk(Talk, g_pid_lueur,	FORCE_PLAYER, "PID_M003_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_リュール_済",	"MID_BT2")
+	-- EventEntryBattleTalk(Talk, "",			FORCE_PLAYER, "PID_M003_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_済",			"MID_BT1")
+	-- EventEntryDie(Talk, "PID_M003_イルシオン兵_ボス", FORCE_ENEMY, conidtion_true, "MID_BT3")
 	
 	-- リュール行動予約
 	EventEntryTurn(VariableSet, -1, -1, FORCE_PLAYER, condition_true, "行動予約", PersonGetIndex(g_pid_lueur))
@@ -89,11 +89,11 @@ end
 -- ---------------------------------------------------------
 
 function チュートリアル_アイテムドロップ()
-	CursorAnimeCreate_FromPid("PID_M003_イルシオン兵_ボス")
-	Tutorial( "TUTID_ドロップアイコン" )
-	CursorAnimeDelete()
+	-- CursorAnimeCreate_FromPid("PID_M003_イルシオン兵_ボス")
+	-- Tutorial( "TUTID_ドロップアイコン" )
+	-- CursorAnimeDelete()
 	
-	Tutorial( "TUTID_Xヘルプ" )
+	-- Tutorial( "TUTID_Xヘルプ" )
 end
 
 -- ---------------------------------------------------------
@@ -102,15 +102,15 @@ function ターン_フィレネ勢加勢()
 	
 	CursorSetPos_FromPid( g_pid_lueur )
 	
-	Talk("MID_EV1")
-	Movie("S08")
-	SkipEscape()
+	-- Talk("MID_EV1")
+	-- Movie("S08")
+	-- SkipEscape()
 	
 	Dispos("Filene", DISPOS_FLAG_FOCUS)
 	Yield()
 	WaitTime(0.5)
 	
-	Talk("MID_EV2")
+	-- Talk("MID_EV2")
 	
 	UnitJoin( "PID_アルフレッド", "PID_エーティエ", "PID_ブシュロン" )
 	
@@ -119,27 +119,27 @@ end
 -- ---------------------------------------------------------
 
 function チュートリアル_チェインアタック(mid, message)
-	CursorSetPos_FromPid(MindGetUnit())
-	MapCameraWait()
+	-- CursorSetPos_FromPid(MindGetUnit())
+	-- MapCameraWait()
 	
-	Talk("MID_EV3")
+	-- Talk("MID_EV3")
 
-	Tutorial( "TUTID_連携スタイル" )
+	-- Tutorial( "TUTID_連携スタイル" )
 end
 
 -- ---------------------------------------------------------
 
 function チュートリアル_特効()
-	CursorSetPos_FromPid(MindGetUnit())
-	MapCameraWait()
+	-- CursorSetPos_FromPid(MindGetUnit())
+	-- MapCameraWait()
 	
-	Talk("MID_EV4")
+	-- Talk("MID_EV4")
 	
-	CursorAnimeCreate_FromPid("PID_M003_イルシオン兵_ランスペガサス_イベント")
-	Talk("MID_EV5")
-	CursorAnimeDelete()
+	-- CursorAnimeCreate_FromPid("PID_M003_イルシオン兵_ランスペガサス_イベント")
+	-- Talk("MID_EV5")
+	-- CursorAnimeDelete()
 	
-	Tutorial( "TUTID_特効" )
+	-- Tutorial( "TUTID_特効" )
 end
 
 -- ---------------------------------------------------------
