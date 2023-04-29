@@ -63,6 +63,8 @@ function MapOpening()
 	-- マルスとシンクロ
 	UnitCreateGodUnit(g_pid_lueur, "GID_M000_マルス")
 	UnitSetEngageCount(g_pid_lueur, 3)
+
+	EventEntryTurn(エンゲージカウント上書き, 1, 1, FORCE_PLAYER)
 	
 	
 	CursorSetPos(5, 4)
@@ -70,6 +72,10 @@ function MapOpening()
 	
 	UnitMovePos(g_pid_lueur, 5, 4, MOVE_FLAG_NONE)
 	UnitMoveWait()
+end
+
+function エンゲージカウント上書き()
+	UnitSetEngageCount(g_pid_lueur, 3)
 end
 
 -- -----------------------------------
