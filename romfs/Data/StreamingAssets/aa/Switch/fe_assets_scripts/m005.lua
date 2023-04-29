@@ -70,11 +70,11 @@ function イベント登録()
 	
 	
 	-- ボス会話
-	EventEntryBattleTalk(Talk, g_pid_lueur,			FORCE_PLAYER, "PID_M005_Irc_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_リュール_済", 		"MID_BT4")
-	EventEntryBattleTalk(Talk, "PID_アルフレッド",	FORCE_PLAYER, "PID_M005_Irc_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_アルフレッド_済", 	"MID_BT2")
-	EventEntryBattleTalk(Talk, "PID_セリーヌ",		FORCE_PLAYER, "PID_M005_Irc_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_セリーヌ_済", 		"MID_BT3")
-	EventEntryBattleTalk(Talk, "",					FORCE_PLAYER, "PID_M005_Irc_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_済", 				"MID_BT1")
-	EventEntryDie(Talk, "PID_M005_Irc_ボス", FORCE_ENEMY, condition_true, "MID_BT5")
+	-- EventEntryBattleTalk(Talk, g_pid_lueur,			FORCE_PLAYER, "PID_M005_Irc_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_リュール_済", 		"MID_BT4")
+	-- EventEntryBattleTalk(Talk, "PID_アルフレッド",	FORCE_PLAYER, "PID_M005_Irc_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_アルフレッド_済", 	"MID_BT2")
+	-- EventEntryBattleTalk(Talk, "PID_セリーヌ",		FORCE_PLAYER, "PID_M005_Irc_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_セリーヌ_済", 		"MID_BT3")
+	-- EventEntryBattleTalk(Talk, "",					FORCE_PLAYER, "PID_M005_Irc_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_済", 				"MID_BT1")
+	-- EventEntryDie(Talk, "PID_M005_Irc_ボス", FORCE_ENEMY, condition_true, "MID_BT5")
 	
 	
 	-- 宝箱
@@ -116,9 +116,9 @@ end
 
 function チュートリアル_ＨＰストック()
 	
-	Talk( "MID_EV5" )
+	-- Talk( "MID_EV5" )
 	
-	Tutorial( "TUTID_HPストック" )
+	-- Tutorial( "TUTID_HPストック" )
 	-- Dialog( "MID_TUT_BMAP_HPSTOCK_0" )
 	
 	VariableSet( g_key_tutorial_hpstock, 1 )
@@ -155,13 +155,13 @@ function Opening()
 	
 	Log("Opening")
 	
-	PuppetDemo("M005", "MID_OP1")
+	-- PuppetDemo("M005", "MID_OP1")
 	
-	Movie("Scene08")
-	SkipEscape()
+	-- Movie("Scene08")
+	-- SkipEscape()
 	
-	PuppetDemo("M005", "MID_OP3")
-	PuppetDemo("M005", "MID_OP4")
+	-- PuppetDemo("M005", "MID_OP3")
+	-- PuppetDemo("M005", "MID_OP4")
 	
 end
 
@@ -169,36 +169,36 @@ function MapOpening()
 	
 	Log("MapOpening")
 	
-	Talk("MID_OP5")
+	-- Talk("MID_OP5")
 	
-	CursorSetPos(13, 24)
-	MapCameraWait()
+	-- CursorSetPos(13, 24)
+	-- MapCameraWait()
 	
-	Talk("MID_OP6")
+	-- Talk("MID_OP6")
 	
-	-- セピア退場
-	UnitMovePos("PID_セピア",	13, 25, MOVE_FLAG_ESCAPE)
-	UnitMoveWait()
-	if UnitExistOnMap("PID_セピア") then
-		UnitDelete("PID_セピア")
-	end
+	-- -- セピア退場
+	-- UnitMovePos("PID_セピア",	13, 25, MOVE_FLAG_ESCAPE)
+	-- UnitMoveWait()
+	-- if UnitExistOnMap("PID_セピア") then
+	-- 	UnitDelete("PID_セピア")
+	-- end
 	
-	WaitTime(0.5)
+	-- WaitTime(0.5)
 	
-	-- ボス周辺整列
-	UnitMovePos("PID_M005_Irc_ボス", 13, 24)
-	UnitMovePosFromPos(11, 25, 12, 24)
-	UnitMovePosFromPos(15, 25, 14, 24)
-	UnitMoveWait()
+	-- -- ボス周辺整列
+	-- UnitMovePos("PID_M005_Irc_ボス", 13, 24)
+	-- UnitMovePosFromPos(11, 25, 12, 24)
+	-- UnitMovePosFromPos(15, 25, 14, 24)
+	-- UnitMoveWait()
 	
-	UnitRotation("PID_M005_Irc_ボス", ROTATE_DOWN)
-	UnitRotation(UnitGetByPos(12, 24), ROTATE_DOWN)
-	UnitRotation(UnitGetByPos(14, 24), ROTATE_DOWN)
-	UnitMoveWait()
+	-- UnitRotation("PID_M005_Irc_ボス", ROTATE_DOWN)
+	-- UnitRotation(UnitGetByPos(12, 24), ROTATE_DOWN)
+	-- UnitRotation(UnitGetByPos(14, 24), ROTATE_DOWN)
+	-- UnitMoveWait()
 	
-	WaitTime(0.5)
+	-- WaitTime(0.5)
 	
-	CursorSetPos_FromPid( g_pid_lueur )
+	-- CursorSetPos_FromPid( g_pid_lueur )
 	
 end
 
@@ -206,17 +206,17 @@ end
 
 function 扉チュートリアル()
 	
-	MapCameraWait()
+	-- MapCameraWait()
 	
-	-- 扉
-	CursorSetPos(13, 11)
-	MapCameraWait()
+	-- -- 扉
+	-- CursorSetPos(13, 11)
+	-- MapCameraWait()
 	
-	CursorAnimeCreate( 12, 11, "W3H1" )
-	Talk( "MID_EV1" )
-	CursorAnimeDelete()
+	-- CursorAnimeCreate( 12, 11, "W3H1" )
+	-- Talk( "MID_EV1" )
+	-- CursorAnimeDelete()
 	
-	Tutorial( "TUTID_扉" )
+	-- Tutorial( "TUTID_扉" )
 	
 end
 
@@ -249,22 +249,22 @@ function 盗賊_行動開始()
 	end
 	
 	
-	CursorSetPos(3, 23)
-	MapCameraWait()
+	-- CursorSetPos(3, 23)
+	-- MapCameraWait()
 	
-	MapObjectCreate("Eff_Cursor01", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 2, 23)
-	MapObjectCreate("Eff_Cursor02", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 4, 24)
-	WaitTime( 2.0 )
-	MapObjectDelete("Eff_Cursor01")
-	MapObjectDelete("Eff_Cursor02")
+	-- MapObjectCreate("Eff_Cursor01", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 2, 23)
+	-- MapObjectCreate("Eff_Cursor02", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 4, 24)
+	-- WaitTime( 2.0 )
+	-- MapObjectDelete("Eff_Cursor01")
+	-- MapObjectDelete("Eff_Cursor02")
 	
-	CursorSetPos_FromPid( "PID_M005_シーフ" )
-	Talk("MID_EV2")
+	-- CursorSetPos_FromPid( "PID_M005_シーフ" )
+	-- Talk("MID_EV2")
 	
-	CursorSetPos_FromPid( g_pid_lueur )
-	Talk("MID_EV3")
+	-- CursorSetPos_FromPid( g_pid_lueur )
+	-- Talk("MID_EV3")
 	
-	Tutorial( "TUTID_宝箱" )
+	-- Tutorial( "TUTID_宝箱" )
 
 end
 
@@ -276,23 +276,23 @@ function エリア_宝物庫進入()
 	if VariableGet( "破壊_6_20" ) == 0 then
 		
 		-- 壊れる壁
-		CursorSetPos(6, 21)
-		MapCameraWait()
+		-- CursorSetPos(6, 21)
+		-- MapCameraWait()
 		
-		MapObjectCreate("Eff_Cursor01", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 6, 20)
-		MapObjectCreate("Eff_Cursor02", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 6, 21)
-		MapObjectCreate("Eff_Cursor03", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 7, 20)
-		MapObjectCreate("Eff_Cursor04", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 7, 21)
-		WaitTime( 2.0 )
-		MapObjectDelete("Eff_Cursor01")
-		MapObjectDelete("Eff_Cursor02")
-		MapObjectDelete("Eff_Cursor03")
-		MapObjectDelete("Eff_Cursor04")
+		-- MapObjectCreate("Eff_Cursor01", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 6, 20)
+		-- MapObjectCreate("Eff_Cursor02", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 6, 21)
+		-- MapObjectCreate("Eff_Cursor03", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 7, 20)
+		-- MapObjectCreate("Eff_Cursor04", "Effects/BMap/UI/Guide/Prefabs/Eff_Cursor_W1H1", 7, 21)
+		-- WaitTime( 2.0 )
+		-- MapObjectDelete("Eff_Cursor01")
+		-- MapObjectDelete("Eff_Cursor02")
+		-- MapObjectDelete("Eff_Cursor03")
+		-- MapObjectDelete("Eff_Cursor04")
 		
-		CursorSetPos_FromPid( g_pid_lueur )
-		Talk( "MID_EV4" )
+		-- CursorSetPos_FromPid( g_pid_lueur )
+		-- Talk( "MID_EV4" )
 		
-		Tutorial( "TUTID_地形破壊" )
+		-- Tutorial( "TUTID_地形破壊" )
 		
 	end
 	
