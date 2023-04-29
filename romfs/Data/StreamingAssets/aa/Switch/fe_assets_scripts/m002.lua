@@ -143,9 +143,9 @@ function Opening()
 	
 	Log("Opening")
 		
-	PuppetDemo("M002", "MID_OP1")
-	PuppetDemo("M002", "MID_OP2")
-	PuppetDemo("M002", "MID_OP3")
+	-- PuppetDemo("M002", "MID_OP1")
+	-- PuppetDemo("M002", "MID_OP2")
+	-- PuppetDemo("M002", "MID_OP3")
 	
 end
 
@@ -153,26 +153,26 @@ function MapOpening()
 	
 	Log("MapOpening")
 	
-	FadeOutAndWait(FADE_FAST)
+	-- FadeOutAndWait(FADE_FAST)
 	
 	CursorSetPos(6, 3)
 	
 	UnitSetEngageCount(g_pid_lueur, 6)
 	
-	FadeInAndWait(FADE_FAST)
+	-- FadeInAndWait(FADE_FAST)
 	
 	-- ルミエルが幻影兵を召喚
 	Dispos("EnemyIllusion", DISPOS_FLAG_FOCUS + DISPOS_FLAG_WARP)
 	Yield()
 	WaitTime(1.0)
 	
-	PuppetDemo("M002", "MID_OP4")
+	-- PuppetDemo("M002", "MID_OP4")
 	
 	UnitTransfer(g_pid_rumiere, FORCE_ENEMY)
 	
-	CursorAnimeCreate_FromPid( "PID_M002_ルミエル" )
-		WinRule()
-	CursorAnimeDelete()
+	-- CursorAnimeCreate_FromPid( "PID_M002_ルミエル" )
+	-- 	WinRule()
+	-- CursorAnimeDelete()
 end
 
 -- ---------------------------------------------------------
@@ -215,13 +215,13 @@ end
 -- ---------------------------------------------------------
 
 function チュートリアル_モンク()
-	CursorSetPos_FromPid(MindGetUnit())
-	MapCameraWait()
+	-- CursorSetPos_FromPid(MindGetUnit())
+	-- MapCameraWait()
 	
-	Talk( "MID_EV4" )
+	-- Talk( "MID_EV4" )
 	
-	Tutorial( "TUTID_杖" )
-	Tutorial( "TUTID_気功スタイル" )
+	-- Tutorial( "TUTID_杖" )
+	-- Tutorial( "TUTID_気功スタイル" )
 	
 	if VariableGet( g_key_tutorial_magic ) == 0 then
 		チュートリアル_竜族スタイル()
@@ -229,13 +229,13 @@ function チュートリアル_モンク()
 end
 
 function チュートリアル_魔法()
-	CursorSetPos_FromPid(MindGetUnit())
-	MapCameraWait()
+	-- CursorSetPos_FromPid(MindGetUnit())
+	-- MapCameraWait()
 	
-	Talk( "MID_EV5" )
+	-- Talk( "MID_EV5" )
 	
-	Tutorial( "TUTID_魔法" )
-	Tutorial( "TUTID_魔法スタイル" )
+	-- Tutorial( "TUTID_魔法" )
+	-- Tutorial( "TUTID_魔法スタイル" )
 	
 	if VariableGet( g_key_tutorial_monk ) == 0 then
 		チュートリアル_竜族スタイル()
@@ -243,7 +243,7 @@ function チュートリアル_魔法()
 end
 
 function チュートリアル_竜族スタイル()
-	Tutorial( "TUTID_竜族スタイル" )	-- 通知のみ
+	-- Tutorial( "TUTID_竜族スタイル" )	-- 通知のみ
 end
 
 -- ---------------------------------------------------------
@@ -578,11 +578,11 @@ function 二回戦開始()
 	
 	UnitSetEngageCount(g_pid_lueur, 0)
 	
-	FadeInAndWait(FADE_NORMAL)
+	-- FadeInAndWait(FADE_NORMAL)
 	
-	WaitTime(0.5)
-	CursorSetPos( 6, 14 )
-	MapCameraWait()
+	-- WaitTime(0.5)
+	-- CursorSetPos( 6, 14 )
+	-- MapCameraWait()
 	
 	-- Talk("MID_EV8")
 	
