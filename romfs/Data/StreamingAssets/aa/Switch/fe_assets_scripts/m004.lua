@@ -177,8 +177,8 @@ end
 
 function セリーヌ合流とセリカ顕現()
 	
-	CursorSetPos(2,4)
-	MapCameraWait()
+	-- CursorSetPos(2,4)
+	-- MapCameraWait()
 	
 	-- セリーヌ登場
 	Dispos("Celine", DISPOS_FLAG_NONE)

@@ -46,13 +46,13 @@ function Opening()
 	
 	Log("Opening")
 	
-	FadeInAndWait(FADE_NORMAL)
-		Movie("S07")
-		SkipEscape()
-		--Talk("MID_MOVIE1")
-	FadeOutAndWait(FADE_NORMAL)
+	-- FadeInAndWait(FADE_NORMAL)
+	-- 	Movie("S07")
+	-- 	SkipEscape()
+	-- 	Talk("MID_MOVIE1")
+	-- FadeOutAndWait(FADE_NORMAL)
 	
-	PuppetDemo("M003", "MID_OP1")
+	-- PuppetDemo("M003", "MID_OP1")
 	
 end
 
@@ -63,27 +63,27 @@ function MapOpening()
 	Dispos("OwnArmy", DISPOS_FLAG_NONE)
 	
 	-- スタート地点にとぶ
-	CursorSetPos(9, 16)
+	CursorSetPos(9, 3)
 	CursorSetDistanceMode(CURSOR_DISTANCE_NEAR)
-	MapCameraWait()
+	-- MapCameraWait()
 	
-	FadeWait()
+	-- FadeWait()
 	
-	AroundCameraSetPos(9, 3)
+	-- AroundCameraSetPos(9, 3)
 	
-	FadeOutAndWait(FADE_FAST)
-		SkipEscape()
-		Movie("Scene05")
-	FadeInAndWait(FADE_FAST)
-	SoundPostEvent("Stop_BGM_Slow") --(仮)MID_OP2でBGMを止めていたので代わりにここで止める
+	-- FadeOutAndWait(FADE_FAST)
+	-- 	SkipEscape()
+	-- 	Movie("Scene05")
+	-- FadeInAndWait(FADE_FAST)
+	-- SoundPostEvent("Stop_BGM_Slow") --(仮)MID_OP2でBGMを止めていたので代わりにここで止める
 	
 	Dispos("Lueur", DISPOS_FLAG_NONE)
 	Yield()
 	
-	WaitTime( 1.0 )
-	ModeSelect()
+	-- WaitTime( 1.0 )
+	-- ModeSelect()
 	
-	WinRule()
+	-- WinRule()
 end
 
 -- ---------------------------------------------------------
@@ -155,18 +155,18 @@ function Ending()
 	
 	Log("Ending")
 	
-	PuppetDemo("M003", "MID_ED1")
+	-- PuppetDemo("M003", "MID_ED1")
 	
-	Movie("Scene30")
-	SkipEscape()
+	-- Movie("Scene30")
+	-- SkipEscape()
 	
-	FadeInAndWait(FADE_FAST)
-		Movie("S09")
-		SkipEscape()
-	FadeOutAndWait(FADE_FAST)
+	-- FadeInAndWait(FADE_FAST)
+	-- 	Movie("S09")
+	-- 	SkipEscape()
+	-- FadeOutAndWait(FADE_FAST)
 	
-	Movie("Scene06")
-	SkipEscape()	
+	-- Movie("Scene06")
+	-- SkipEscape()	
 end
 
 function GameOver()
