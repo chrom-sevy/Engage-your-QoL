@@ -98,7 +98,7 @@ function Opening()
 	
 	Log("Opening")
 	
-	PuppetDemo("M004", "MID_OP1")
+	-- PuppetDemo("M004", "MID_OP1")
 	
 end
 
@@ -109,63 +109,63 @@ function MapOpening()
 	-- -----------------------------------
 	
 	-- リュール達一旦退避
-	UnitSetPosFromPos(3,3,3,2)
-	UnitSetPosFromPos(4,3,4,2)
-	UnitSetPosFromPos(2,4,2,3)
-	UnitSetPosFromPos(3,4,3,3)
-	UnitSetPosFromPos(4,4,4,3)
-	UnitSetPosFromPos(3,5,3,4)
-	UnitSetPosFromPos(4,5,4,4)
+	-- UnitSetPosFromPos(3,3,3,2)
+	-- UnitSetPosFromPos(4,3,4,2)
+	-- UnitSetPosFromPos(2,4,2,3)
+	-- UnitSetPosFromPos(3,4,3,3)
+	-- UnitSetPosFromPos(4,4,4,3)
+	-- UnitSetPosFromPos(3,5,3,4)
+	-- UnitSetPosFromPos(4,5,4,4)
 	
-	CursorSetPos(4,5)
-	CursorSetDistanceMode(CURSOR_DISTANCE_NEAR)
-	MapCameraWait()
-	FadeIn(FADE_NORMAL)
-	WaitTime(0.1)
+	-- CursorSetPos(4,5)
+	-- CursorSetDistanceMode(CURSOR_DISTANCE_NEAR)
+	-- MapCameraWait()
+	-- FadeIn(FADE_NORMAL)
+	-- WaitTime(0.1)
 	
-	-- リュール達登場
-	UnitMovePosFromPos(4,4,4,5)
-	UnitMovePosFromPos(3,4,3,5)
-	UnitMovePosFromPos(4,3,4,4)
-	UnitMovePosFromPos(3,3,3,4)
-	UnitMovePosFromPos(2,3,2,4)
-	UnitMovePosFromPos(4,2,4,3)
-	UnitMovePosFromPos(3,2,3,3)
+	-- -- リュール達登場
+	-- UnitMovePosFromPos(4,4,4,5)
+	-- UnitMovePosFromPos(3,4,3,5)
+	-- UnitMovePosFromPos(4,3,4,4)
+	-- UnitMovePosFromPos(3,3,3,4)
+	-- UnitMovePosFromPos(2,3,2,4)
+	-- UnitMovePosFromPos(4,2,4,3)
+	-- UnitMovePosFromPos(3,2,3,3)
 	
-	UnitMoveWait()
-	FadeWait()
+	-- UnitMoveWait()
+	-- FadeWait()
 	
-	SoundPostEvent("BGM_Evt_Danger1")
+	-- SoundPostEvent("BGM_Evt_Danger1")
 	
-	Talk("MID_OP2")
+	-- Talk("MID_OP2")
 	
-	CursorSetPos(6, 12)
-	MapCameraWait()
+	-- CursorSetPos(6, 12)
+	-- MapCameraWait()
 	
-	WaitTime(1.0)
+	-- WaitTime(1.0)
 	
-	Talk("MID_OP3")
+	-- Talk("MID_OP3")
 	
 	-- -----------------------------------
 	
-	CursorSetPos_FromPid_DistanceModeNear("PID_セリーヌ")
+	-- CursorSetPos_FromPid_DistanceModeNear("PID_セリーヌ")
 	
-	FadeOutAndWait(FADE_FAST)
-		SkipEscape()
-		Movie("Scene07")
+	-- FadeOutAndWait(FADE_FAST)
+		-- SkipEscape()
+		-- Movie("Scene07")
 		
-		if UnitExistOnMap("PID_セリーヌ") then
-			UnitDelete("PID_セリーヌ")
-		end
-	FadeInAndWait(FADE_FAST)
+		-- if UnitExistOnMap("PID_セリーヌ") then
+		-- 	UnitDelete("PID_セリーヌ")
+		-- end
+	-- FadeInAndWait(FADE_FAST)
 	
 	-- -----------------------------------
 	
-	SoundPostEvent("BGM_Evt_Danger1_End")
+	-- SoundPostEvent("BGM_Evt_Danger1_End")
 	
-	CursorSetPos_FromPid( g_pid_lueur )
+	-- CursorSetPos_FromPid( g_pid_lueur )
 	
-	SoundPostEvent("BGM_Evt_Danger1_Stop_1000")
+	-- SoundPostEvent("BGM_Evt_Danger1_Stop_1000")
 end
 
 -- ---------------------------------------------------------
@@ -227,15 +227,15 @@ end
 
 function クロエとルイの会話()
 	
-	CursorSetPos(13,9)
-	MapCameraWait()
+	-- CursorSetPos(13,9)
+	-- MapCameraWait()
 	
-	Talk("MID_EV1")
+	-- Talk("MID_EV1")
 	
-	WaitTime(0.5)
+	-- WaitTime(0.5)
 	
-	Tutorial( "TUTID_重装スタイル" ) -- 通知のみ
-	Tutorial( "TUTID_飛行スタイル" ) -- 通知のみ
+	-- Tutorial( "TUTID_重装スタイル" ) -- 通知のみ
+	-- Tutorial( "TUTID_飛行スタイル" ) -- 通知のみ
 	
 end
 
@@ -269,11 +269,11 @@ end
 
 function チュートリアル_訪問()
 	
-	MapCameraWait()
-	CursorAnimeCreate(7, 4)
-	Talk("MID_EV4")
-	CursorAnimeDelete()
-	Tutorial( "TUTID_訪問" )
+	-- MapCameraWait()
+	-- CursorAnimeCreate(7, 4)
+	-- Talk("MID_EV4")
+	-- CursorAnimeDelete()
+	-- Tutorial( "TUTID_訪問" )
 	
 	VariableSet( g_key_tutorial_visit, 1 )
 	
@@ -300,12 +300,12 @@ end
 function ピックアップ_セリーヌ()
 	
 	if VariableGet( g_key_pickupCeline ) == 0 then
-		MapCameraWait()
-		Talk("MID_EV2")
+		-- MapCameraWait()
+		-- Talk("MID_EV2")
 		
-		Tutorial( "TUTID_紋章士セリカ" )
+		-- Tutorial( "TUTID_紋章士セリカ" )
 		
-		Talk("MID_EV10")
+		-- Talk("MID_EV10")
 		
 		VariableSet( g_key_pickupCeline, 1 )
 	end
@@ -321,7 +321,7 @@ end
 
 function エンゲージ後に再生()
 	
-	Talk( "MID_EV3" )
+	-- Talk( "MID_EV3" )
 	
 end
 
@@ -464,7 +464,7 @@ function チュートリアル_ワープライナ()
 	MapCameraWait()
 	]]
 	
-	Talk( "MID_EV11" )
+	-- Talk( "MID_EV11" )
 	VariableSet( g_key_tutorial_warp, 1 )
 	
 end
@@ -475,15 +475,15 @@ function 青軍２ターン直前()
 	-- 蛮族
 	Dispos("Bandit", DISPOS_FLAG_FOCUS)
 	Yield()
-	WaitTime(0.5)
-	Talk("MID_EV8")
+	-- WaitTime(0.5)
+	-- Talk("MID_EV8")
 	
 	-- 竜の時水晶
-	CursorSetPos_FromPid( g_pid_lueur )
-	Talk("MID_EV9")
+	-- CursorSetPos_FromPid( g_pid_lueur )
+	-- Talk("MID_EV9")
 	SoundPostEvent("ItemGet_Important")
-	Dialog( "MID_TUT_NAVI_M004_TIMECRYSTAL" )
-	Tutorial( "TUTID_竜の時水晶" )
+	-- Dialog( "MID_TUT_NAVI_M004_TIMECRYSTAL" )
+	-- Tutorial( "TUTID_竜の時水晶" )
 
 	-- 巻き戻し使える
 	MapHistoryRewindEnable()
@@ -492,14 +492,14 @@ end
 -- ---------------------------------------------------------
 
 function 民家１訪問イベント()
-	Talk("MID_EV5")
+	-- Talk("MID_EV5")
 	ItemGain(MindGetUnit(), "IID_手槍")
 end
 
 -- ---------------------------------------------------------
 
 function 民家２訪問イベント()
-	Talk("MID_EV6")
+	-- Talk("MID_EV6")
 	ItemGain(MindGetUnit(), "IID_2000G")
 	
 	-- 蛮族のAIを変更
@@ -513,8 +513,8 @@ end
 -- ---------------------------------------------------------
 
 function 増援４ターン目()
-	CursorSetPos_FromPid("M004_イルシオン兵_ボス")
-	Talk("MID_EV7")
+	-- CursorSetPos_FromPid("M004_イルシオン兵_ボス")
+	-- Talk("MID_EV7")
 	
 	CursorSetPos( 13, 15 )
 	MapCameraWait()
@@ -523,7 +523,7 @@ function 増援４ターン目()
 	Yield()
 	WaitTime(0.5)
 	
-	Tutorial( "TUTID_増援" )
+	-- Tutorial( "TUTID_増援" )
 end
 
 -- ---------------------------------------------------------
