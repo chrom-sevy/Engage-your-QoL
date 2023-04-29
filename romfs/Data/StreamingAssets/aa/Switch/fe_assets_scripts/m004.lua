@@ -53,13 +53,13 @@ function イベント登録()
 	
 	EventEntryTurn(勝利条件_敵将フォーカス, 1, 1, FORCE_PLAYER, condition_true, "PID_M004_イルシオン兵_ボス")
 	
-	EventEntryTurnAfter(Tutorial, 1, 1, FORCE_PLAYER, condition_true, "TUTID_戦死者の魂" )
+	-- EventEntryTurnAfter(Tutorial, 1, 1, FORCE_PLAYER, condition_true, "TUTID_戦死者の魂" )
 	
 	EventEntryPickup(チュートリアル_訪問, "", condition_チュートリアル_訪問)
 	
 	EventEntryPickup(ピックアップ_セリーヌ, "PID_セリーヌ", condition_ピックアップ_セリーヌ)
 	EventEntryEngageAfter(エンゲージ後に再生, "PID_セリーヌ", "セリーヌ・セリカエンゲージ後_済")
-	EventEntryUnitCommandInterrupt(チュートリアル_ワープライナ, "PID_セリーヌ", "エンゲージ技", condition_チュートリアル_ワープライナ)
+	--EventEntryUnitCommandInterrupt(チュートリアル_ワープライナ, "PID_セリーヌ", "エンゲージ技", condition_チュートリアル_ワープライナ)
 	
 	EventEntryTurn(青軍２ターン直前, 2, 2,  FORCE_PLAYER, g_key_turn2event)
 	
@@ -70,8 +70,8 @@ function イベント登録()
 	EventEntryDestroy(民家破壊_フラグセット, 14, 10, 14, 10,	13, 11, 15, 13,		g_key_house2destroy)
 	
 	-- キャラ同士の会話
-	EventEntryTalk(Talk, "PID_セリーヌ", FORCE_PLAYER, "PID_クロエ",	FORCE_PLAYER, true, g_key_talk_chloe,	"MID_TK1")
-	EventEntryTalk(Talk, "PID_セリーヌ", FORCE_PLAYER, "PID_ルイ",		FORCE_PLAYER, true, g_key_talk_louis,	"MID_TK2")
+	-- EventEntryTalk(Talk, "PID_セリーヌ", FORCE_PLAYER, "PID_クロエ",	FORCE_PLAYER, true, g_key_talk_chloe,	"MID_TK1")
+	-- EventEntryTalk(Talk, "PID_セリーヌ", FORCE_PLAYER, "PID_ルイ",		FORCE_PLAYER, true, g_key_talk_louis,	"MID_TK2")
 	
 	-- 増援
 	EventEntryTurn(増援４ターン目, 4, 4, FORCE_PLAYER)
@@ -79,8 +79,8 @@ function イベント登録()
 	EventEntryTurn(増援７ターン目, 7, 7, FORCE_PLAYER, モードはルナティック)
 	
 	-- ボス
-	EventEntryBattleTalk(Talk, "", FORCE_PLAYER, "PID_M004_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_済", "MID_BT1")
-	EventEntryDie(Talk, "PID_M004_イルシオン兵_ボス", FORCE_ENEMY, condition_true, "MID_BT2")
+	-- EventEntryBattleTalk(Talk, "", FORCE_PLAYER, "PID_M004_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_済", "MID_BT1")
+	-- EventEntryDie(Talk, "PID_M004_イルシオン兵_ボス", FORCE_ENEMY, condition_true, "MID_BT2")
 	
 	EventEntryBattleAfter(ボス側近_必殺調整スキル変更, "PID_M004_異形兵_ボス側近", FORCE_ENEMY, "", FORCE_PLAYER, false, "戦闘後_ボス側近必殺調整_済")
 	
