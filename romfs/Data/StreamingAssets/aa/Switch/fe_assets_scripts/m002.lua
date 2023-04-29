@@ -86,11 +86,9 @@ function イベント登録()
 	
 	EventEntryTurn(エンゲージカウント上書き, 1, 1, FORCE_PLAYER)
 	
-	EventEntryTurnAfter(ターン後_射程チュートリアル, 1, 1, FORCE_PLAYER)
-	
 	EventEntryPickup(チュートリアル_ブレイク,	"",				condition_チュートリアル_ブレイク	)
-	EventEntryPickup(チュートリアル_モンク,		"PID_フラン",	g_key_tutorial_monk)
-	EventEntryPickup(チュートリアル_魔法,		"PID_クラン",	g_key_tutorial_magic)
+	-- EventEntryPickup(チュートリアル_モンク,		"PID_フラン",	g_key_tutorial_monk)
+	-- EventEntryPickup(チュートリアル_魔法,		"PID_クラン",	g_key_tutorial_magic)
 	
 	EventEntryPickup(チュートリアル_危険範囲,	"",				condition_チュートリアル_危険範囲	)
 	
@@ -124,8 +122,8 @@ function イベント登録()
 	
 	EventEntryBattleTalk(戦闘前イベント_リュール,	g_pid_lueur,		FORCE_PLAYER,	g_pid_rumiere, FORCE_ENEMY, true, condition_戦闘前イベント_リュール)
 	EventEntryBattleTalk(戦闘前イベント_ヴァンドレ,	"PID_ヴァンドレ",	FORCE_PLAYER,	g_pid_rumiere, FORCE_ENEMY, true, condition_戦闘前イベント_ヴァンドレ)
-	EventEntryBattleTalk(Talk,						"PID_クラン",		FORCE_PLAYER,	g_pid_rumiere, FORCE_ENEMY, true, g_key_battleTalk_clan, "MID_BT4")
-	EventEntryBattleTalk(Talk,						"PID_フラン",		FORCE_PLAYER,	g_pid_rumiere, FORCE_ENEMY, true, g_key_battleTalk_fran, "MID_BT5")
+	--EventEntryBattleTalk(Talk,						"PID_クラン",		FORCE_PLAYER,	g_pid_rumiere, FORCE_ENEMY, true, g_key_battleTalk_clan, "MID_BT4")
+	--EventEntryBattleTalk(Talk,						"PID_フラン",		FORCE_PLAYER,	g_pid_rumiere, FORCE_ENEMY, true, g_key_battleTalk_fran, "MID_BT5")
 	
 	EventEntryDie(ルミエル撃破イベント, g_pid_rumiere, FORCE_ENEMY, condition_ルミエル撃破イベント)
 	
@@ -185,17 +183,6 @@ end
 
 -- ---------------------------------------------------------
 
-function ターン後_射程チュートリアル()
-	
-	CursorAnimeCreate_FromPid("PID_M002_幻影兵_アーチャー_イベント")
-	Talk("MID_EV1")
-	CursorAnimeDelete()
-	Tutorial( "TUTID_射程" )
-	
-end
-
--- ---------------------------------------------------------
-
 function condition_チュートリアル_ブレイク()
 	
 	if VariableGet( g_key_tutorial_break ) == 1 then
@@ -220,11 +207,6 @@ function condition_チュートリアル_ブレイク()
 end
 
 function チュートリアル_ブレイク()
-	
-	CursorAnimeCreate_FromPid( "PID_M002_幻影兵_アクスファイター_イベント" )
-	Talk("MID_EV2")
-	CursorAnimeDelete()
-	Tutorial( "TUTID_ブレイク" )
 	
 	VariableSet( g_key_tutorial_break, 1 )
 	
@@ -280,10 +262,10 @@ end
 
 function チュートリアル_危険範囲()
 	
-	CursorSetPos_FromPid(MindGetUnit())
-	MapCameraWait()
+	-- CursorSetPos_FromPid(MindGetUnit())
+	-- MapCameraWait()
 	
-	Tutorial( "TUTID_危険範囲" )
+	-- Tutorial( "TUTID_危険範囲" )
 	
 	VariableSet( g_key_tutorial_attackRange, 1 )
 	
@@ -316,7 +298,7 @@ function condition_アクスファイター戦闘後()
 end
 
 function アクスファイター戦闘後()
-	Talk( "MID_EV3" )
+	-- Talk( "MID_EV3" )
 	VariableSet( g_key_battled_axefighter, 1 )
 end
 
@@ -348,8 +330,8 @@ function condition_ルミエル行動開始()
 end
 
 function ルミエル行動開始()
-	CursorSetPos_FromPid( g_pid_rumiere )
-	Talk( "MID_EV6" )
+	-- CursorSetPos_FromPid( g_pid_rumiere )
+	-- Talk( "MID_EV6" )
 	VariableSet( g_key_rumiere_run, 1 )
 end
 
@@ -369,10 +351,10 @@ end
 
 function 戦闘前イベント_リュール()
 	if ( VariableGet( g_key_start_battle2 ) == 0 ) then
-		Talk("MID_BT1")
+		-- Talk("MID_BT1")
 		VariableSet( g_key_battleTalk_lueur1, 1 )
 	else
-		Talk("MID_BT2")
+		-- Talk("MID_BT2")
 		VariableSet( g_key_battleTalk_lueur2, 1 )
 		ルミエルのAI変更()
 	end
@@ -397,14 +379,14 @@ end
 function 戦闘前イベント_ヴァンドレ()
 	-- 戦闘前会話
 	if ( VariableGet( g_key_battleTalk_vandre ) == 0 ) then
-		Talk( "MID_BT3" )
+		-- Talk( "MID_BT3" )
 		VariableSet( g_key_battleTalk_vandre, 1 )
 	end
 	
 	
 	-- 後半戦・ルミエルのAIを変更する
 	if ( VariableGet( g_key_start_battle2 ) == 1 ) and ( UnitGetPID( MindGetUnit() ) == g_pid_rumiere ) then
-		VariableSet( g_key_battled_vandre2, 1 )
+		-- VariableSet( g_key_battled_vandre2, 1 )
 		ルミエルのAI変更()
 	end
 end
@@ -602,13 +584,13 @@ function 二回戦開始()
 	CursorSetPos( 6, 14 )
 	MapCameraWait()
 	
-	Talk("MID_EV8")
+	-- Talk("MID_EV8")
 	
-	FadeOutAndWait(FADE_FAST)
+	-- FadeOutAndWait(FADE_FAST)
 			
-			PuppetDemo("M002", "MID_EV8_2")
-			Movie("Kengen01")
-			SkipEscape()
+			-- PuppetDemo("M002", "MID_EV8_2")
+			-- Movie("Kengen01")
+			-- SkipEscape()
 			
 			-- シグルドとエンゲージ
 			UnitCreateGodUnit(g_pid_rumiere, "GID_M002_シグルド")
@@ -617,11 +599,11 @@ function 二回戦開始()
 			-- 紋章氣マス配置
 			MapOverlapSetOne(8, 4, "TID_紋章氣")
 			
-	FadeInAndWait(FADE_NORMAL)
+	-- FadeInAndWait(FADE_NORMAL)
 	
-	Talk("MID_EV9")
+	-- Talk("MID_EV9")
 	
-	FadeInAndWait(FADE_NORMAL)
+	-- FadeInAndWait(FADE_NORMAL)
 	
 	-- 再び幻影兵召喚
 	Dispos( "EnemyIllusion2_3", DISPOS_FLAG_FOCUS + DISPOS_FLAG_WARP )
@@ -634,7 +616,7 @@ function 二回戦開始()
 	Yield()
 	WaitTime(0.5)
 	
-	Talk("MID_EV10")
+	-- Talk("MID_EV10")
 	
 	VariableSet( g_key_start_battle2, 1 )
 	
@@ -656,11 +638,11 @@ end
 
 function チュートリアル_紋章氣マス()
 	
-	CursorAnimeCreate( 8, 4 )
+	-- CursorAnimeCreate( 8, 4 )
 	
-	Tutorial( "TUTID_紋章氣" )
+	-- Tutorial( "TUTID_紋章氣" )
 	
-	CursorAnimeDelete()
+	-- CursorAnimeDelete()
 	
 	VariableSet( g_key_tutorial_emblemPowerSpot, 1 )
 end
@@ -702,10 +684,10 @@ end
 
 function ルミエル出撃イベント()
 	
-	CursorSetPos_FromPid(g_pid_rumiere)
-	Talk("MID_EV11")
+	-- CursorSetPos_FromPid(g_pid_rumiere)
+	-- Talk("MID_EV11")
 	
-	UnitSetEngaging(g_pid_rumiere, true)
+	-- UnitSetEngaging(g_pid_rumiere, true)
 	
 	VariableSet( g_key_rumiere_runned, 1 )
 	
@@ -728,7 +710,7 @@ function condition_ルミエル待機後イベント()
 end
 
 function ルミエル待機後イベント()
-	Talk( "MID_EV12" )
+	-- Talk( "MID_EV12" )
 	スキル解除( g_pid_rumiere, "SID_相手の必殺０" )
 	VariableSet( g_key_rumiere_fixed, 1 )
 end
@@ -750,7 +732,7 @@ function condition_ルミエル撃破イベント()
 end
 
 function ルミエル撃破イベント()
-	Talk( "MID_BT6" )
+	--Talk( "MID_BT6" )
 	VariableSet( "勝利", 1 )
 	VariableSet( g_key_rumiere_defeat, 1 )
 end
