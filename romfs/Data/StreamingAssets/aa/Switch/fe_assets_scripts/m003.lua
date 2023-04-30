@@ -1,37 +1,89 @@
 Include("Common")
 g_pid_lueur = "PID_リュール"
 
+g_key_tutorial_visit	= "チュートリアル_訪問_済"
+
+g_key_pickupCeline		= "ピックアップ_セリーヌ_済"
+
+g_key_celineX			= "セリーヌ位置X"
+g_key_celineZ			= "セリーヌ位置Z"
+
+g_key_tutorial_warp		= "チュートリアル_ワープライナ_済"
+g_key_talk_chloe		= "会話イベント_セリーヌ_クロエ_済"
+g_key_talk_louis		= "会話イベント_セリーヌ_ルイ_済"
+
+g_key_house1destroy			= "S_民家１破壊_済"
+g_key_house2destroy			= "S_民家２破壊_済"
+g_key_turn2event			= "２ターン目のイベント再生済み"
+
+g_map_width				= 23
+g_map_height			= 20
+
 -- -----------------------------------
 
 function Startup()
 	
 	Log("Startup")
 	
-	WinRuleSetMID( "MID_RULE_M003_WIN" )
+	-- 勝利条件の設定
+	WinRuleSetDestroyBoss( true )	-- 敵将撃破
+	WinRuleSetMID( "MID_RULE_M004_WIN" )
 	
-	VariableSet( "禁止_輸送隊", 2 )
-	
+	変数登録()
 	イベント登録()
 	
 end
 
-function イベント登録()
-
-	-- イベント登録
-	EventEntryTurnAfter(チュートリアル_アイテムドロップ, 1, 1, FORCE_PLAYER)
+function 変数登録()
 	
-	EventEntryTurn(ターン_フィレネ勢加勢, 2, 2, FORCE_PLAYER)
+	VariableEntry( g_key_house1destroy, 0 )
+	VariableEntry( g_key_house2destroy, 0 )
+	
+	VariableEntry( g_key_tutorial_visit, 0 )
+	
+	VariableEntry( g_key_pickupCeline, 0 )
+	VariableEntry( g_key_celineX, 0 )
+	VariableEntry( g_key_celineZ, 0 )
+	VariableEntry( g_key_tutorial_warp, 0 )
+end
 
-	EventEntryPickup(チュートリアル_チェインアタック,	"PID_ブシュロン", "チェインチュートリアル_済")
-	EventEntryPickup(チュートリアル_特効,				"PID_エーティエ", "特効チュートリアル_済")
+function イベント登録()
+	
+	EventEntryTurn(進撃開始直後イベント, 1, 1,  FORCE_PLAYER)
+	
+	EventEntryTurn(勝利条件_敵将フォーカス, 1, 1, FORCE_PLAYER, condition_true, "PID_M004_イルシオン兵_ボス")
+	
+	EventEntryTurnAfter(Tutorial, 1, 1, FORCE_PLAYER, condition_true, "TUTID_戦死者の魂" )
+	
+	EventEntryPickup(チュートリアル_訪問, "", condition_チュートリアル_訪問)
+	
+	EventEntryPickup(ピックアップ_セリーヌ, "PID_セリーヌ", condition_ピックアップ_セリーヌ)
+	EventEntryEngageAfter(エンゲージ後に再生, "PID_セリーヌ", "セリーヌ・セリカエンゲージ後_済")
+	EventEntryUnitCommandInterrupt(チュートリアル_ワープライナ, "PID_セリーヌ", "エンゲージ技", condition_チュートリアル_ワープライナ)
+	
+	EventEntryTurn(青軍２ターン直前, 2, 2,  FORCE_PLAYER, g_key_turn2event)
+	
+	-- 民家：訪問と破壊
+	EventEntryVisit(民家１訪問イベント, 7, 4)
+	EventEntryVisit(民家２訪問イベント, 14, 10)
+	EventEntryDestroy(民家破壊_フラグセット,  7,  4,  7,  4,	 6,  5,  8,  7,		g_key_house1destroy)
+	EventEntryDestroy(民家破壊_フラグセット, 14, 10, 14, 10,	13, 11, 15, 13,		g_key_house2destroy)
+	
+	-- キャラ同士の会話
+	EventEntryTalk(Talk, "PID_セリーヌ", FORCE_PLAYER, "PID_クロエ",	FORCE_PLAYER, true, g_key_talk_chloe,	"MID_TK1")
+	EventEntryTalk(Talk, "PID_セリーヌ", FORCE_PLAYER, "PID_ルイ",		FORCE_PLAYER, true, g_key_talk_louis,	"MID_TK2")
+	
+	-- 増援
+	EventEntryTurn(増援４ターン目, 4, 4, FORCE_PLAYER)
+	EventEntryTurn(増援５ターン目, 5, 5, FORCE_PLAYER)
+	EventEntryTurn(増援７ターン目, 7, 7, FORCE_PLAYER, モードはルナティック)
 	
 	-- ボス
-	-- EventEntryBattleTalk(Talk, g_pid_lueur,	FORCE_PLAYER, "PID_M003_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_リュール_済",	"MID_BT2")
-	-- EventEntryBattleTalk(Talk, "",			FORCE_PLAYER, "PID_M003_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_済",			"MID_BT1")
-	-- EventEntryDie(Talk, "PID_M003_イルシオン兵_ボス", FORCE_ENEMY, conidtion_true, "MID_BT3")
+	EventEntryBattleTalk(Talk, "", FORCE_PLAYER, "PID_M004_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_済", "MID_BT1")
+	EventEntryDie(Talk, "PID_M004_イルシオン兵_ボス", FORCE_ENEMY, condition_true, "MID_BT2")
 	
-	-- リュール行動予約
-	EventEntryTurn(VariableSet, -1, -1, FORCE_PLAYER, condition_true, "行動予約", PersonGetIndex(g_pid_lueur))
+	EventEntryBattleAfter(ボス側近_必殺調整スキル変更, "PID_M004_異形兵_ボス側近", FORCE_ENEMY, "", FORCE_PLAYER, false, "戦闘後_ボス側近必殺調整_済")
+	
 end
 
 function Cleanup()
@@ -46,13 +98,7 @@ function Opening()
 	
 	Log("Opening")
 	
-	-- FadeInAndWait(FADE_NORMAL)
-	-- 	Movie("S07")
-	-- 	SkipEscape()
-	-- 	Talk("MID_MOVIE1")
-	-- FadeOutAndWait(FADE_NORMAL)
-	
-	-- PuppetDemo("M003", "MID_OP1")
+	PuppetDemo("M004", "MID_OP1")
 	
 end
 
@@ -60,86 +106,453 @@ function MapOpening()
 	
 	Log("MapOpening")
 	
-	Dispos("OwnArmy", DISPOS_FLAG_NONE)
+	-- -----------------------------------
 	
-	-- スタート地点にとぶ
-	CursorSetPos(9, 3)
+	-- リュール達一旦退避
+	UnitSetPosFromPos(3,3,3,2)
+	UnitSetPosFromPos(4,3,4,2)
+	UnitSetPosFromPos(2,4,2,3)
+	UnitSetPosFromPos(3,4,3,3)
+	UnitSetPosFromPos(4,4,4,3)
+	UnitSetPosFromPos(3,5,3,4)
+	UnitSetPosFromPos(4,5,4,4)
+	
+	CursorSetPos(4,5)
 	CursorSetDistanceMode(CURSOR_DISTANCE_NEAR)
-	-- MapCameraWait()
+	MapCameraWait()
+	FadeIn(FADE_NORMAL)
+	WaitTime(0.1)
 	
-	-- FadeWait()
+	-- リュール達登場
+	UnitMovePosFromPos(4,4,4,5)
+	UnitMovePosFromPos(3,4,3,5)
+	UnitMovePosFromPos(4,3,4,4)
+	UnitMovePosFromPos(3,3,3,4)
+	UnitMovePosFromPos(2,3,2,4)
+	UnitMovePosFromPos(4,2,4,3)
+	UnitMovePosFromPos(3,2,3,3)
 	
-	-- AroundCameraSetPos(9, 3)
+	UnitMoveWait()
+	FadeWait()
 	
-	-- FadeOutAndWait(FADE_FAST)
-	-- 	SkipEscape()
-	-- 	Movie("Scene05")
-	-- FadeInAndWait(FADE_FAST)
-	-- SoundPostEvent("Stop_BGM_Slow") --(仮)MID_OP2でBGMを止めていたので代わりにここで止める
+	SoundPostEvent("BGM_Evt_Danger1")
 	
-	Dispos("Lueur", DISPOS_FLAG_NONE)
-	Yield()
+	Talk("MID_OP2")
 	
-	-- WaitTime( 1.0 )
-	-- ModeSelect()
+	CursorSetPos(6, 12)
+	MapCameraWait()
 	
-	-- WinRule()
-end
-
--- ---------------------------------------------------------
-
-function チュートリアル_アイテムドロップ()
-	-- CursorAnimeCreate_FromPid("PID_M003_イルシオン兵_ボス")
-	-- Tutorial( "TUTID_ドロップアイコン" )
-	-- CursorAnimeDelete()
+	WaitTime(1.0)
 	
-	-- Tutorial( "TUTID_Xヘルプ" )
-end
-
--- ---------------------------------------------------------
-
-function ターン_フィレネ勢加勢()
+	Talk("MID_OP3")
+	
+	-- -----------------------------------
+	
+	CursorSetPos_FromPid_DistanceModeNear("PID_セリーヌ")
+	
+	FadeOutAndWait(FADE_FAST)
+		SkipEscape()
+		Movie("Scene07")
+		
+		if UnitExistOnMap("PID_セリーヌ") then
+			UnitDelete("PID_セリーヌ")
+		end
+	FadeInAndWait(FADE_FAST)
+	
+	-- -----------------------------------
+	
+	SoundPostEvent("BGM_Evt_Danger1_End")
 	
 	CursorSetPos_FromPid( g_pid_lueur )
 	
-	-- Talk("MID_EV1")
-	-- Movie("S08")
-	-- SkipEscape()
+	SoundPostEvent("BGM_Evt_Danger1_Stop_1000")
+end
+
+-- ---------------------------------------------------------
+
+function 進撃開始直後イベント()
+	セリーヌ合流とセリカ顕現()
+	クロエとルイの会話()
+end
+
+function セリーヌ合流とセリカ顕現()
 	
-	Dispos("Filene", DISPOS_FLAG_FOCUS)
+	CursorSetPos(2,4)
+	MapCameraWait()
+	
+	-- セリーヌ登場
+	Dispos("Celine", DISPOS_FLAG_NONE)
+	Yield()
+	
+	味方がセリーヌの方を向く()
+	
+	Talk("MID_OP5")
+	
+	Movie("Kengen02")
+	SkipEscape()
+	
+	-- 顕現前の会話内でフェードアウトしているので強制的にフェードを戻す
+	FadeInAndWait(FADE_FAST)
+	Talk("MID_OP6")
+	
+	-- 神将作成・バディ化
+	UnitCreateGodUnit("PID_セリーヌ", "GID_セリカ")
+	UnitSetEngageCount("PID_セリーヌ", 7)
+	
+	-- セリーヌ移動
+	UnitMovePos( "PID_セリーヌ", 5, 4, MOVE_FLAG_NONE )
+	UnitMoveWait()
+	
+	-- 緑軍→青軍
+	UnitJoin( "PID_セリーヌ", "PID_ルイ", "PID_クロエ" )
+	
+	UnitRotation("PID_セリーヌ", ROTATE_UP)
+	UnitMoveWait()
+	WaitTime(1.0)
+	
+end
+
+function 味方がセリーヌの方を向く()
+	
+	local celineX = UnitGetX("PID_セリーヌ")
+	local celineZ = UnitGetZ("PID_セリーヌ")
+	
+	local index = ForceUnitGetFirst(FORCE_PLAYER)
+	while index != nil do
+		UnitRotation(index, celineX, celineZ)
+		index = ForceUnitGetNext(index)	
+	end
+	
+end
+
+function クロエとルイの会話()
+	
+	CursorSetPos(13,9)
+	MapCameraWait()
+	
+	Talk("MID_EV1")
+	
+	WaitTime(0.5)
+	
+	Tutorial( "TUTID_重装スタイル" ) -- 通知のみ
+	Tutorial( "TUTID_飛行スタイル" ) -- 通知のみ
+	
+end
+
+-- ---------------------------------------------------------
+
+function condition_チュートリアル_訪問()
+	
+	if VariableGet( g_key_tutorial_visit ) == 1 then
+		return false
+	end
+	
+	local unit = MindGetUnit()
+	local pid = UnitGetPID( unit )
+	if ( pid == "PID_セリーヌ" )
+		or ( pid == "PID_ルイ" )
+		or ( pid == "PID_クロエ" ) then
+			return false
+	end
+	
+	if not ( UnitGetForce( unit ) == FORCE_PLAYER ) then
+		return false
+	end
+	
+	if VariableGet("訪問_7_4") == 0 then
+		return true
+	end
+	
+	return false
+	
+end
+
+function チュートリアル_訪問()
+	
+	MapCameraWait()
+	CursorAnimeCreate(7, 4)
+	Talk("MID_EV4")
+	CursorAnimeDelete()
+	Tutorial( "TUTID_訪問" )
+	
+	VariableSet( g_key_tutorial_visit, 1 )
+	
+end
+
+-- ---------------------------------------------------------
+
+function condition_ピックアップ_セリーヌ()
+	
+	-- セリーヌ初回ピックアップイベントがまだ
+	if VariableGet( g_key_pickupCeline ) == 0 then
+		return true
+	end
+	
+	-- ワープライナのチュートリアルがまだ
+	if VariableGet( g_key_tutorial_warp ) == 0 then
+		return true
+	end
+	
+	return false
+	
+end
+
+function ピックアップ_セリーヌ()
+	
+	if VariableGet( g_key_pickupCeline ) == 0 then
+		MapCameraWait()
+		Talk("MID_EV2")
+		
+		Tutorial( "TUTID_紋章士セリカ" )
+		
+		Talk("MID_EV10")
+		
+		VariableSet( g_key_pickupCeline, 1 )
+	end
+	
+	-- ワープライナチュートリアル用
+	-- 現在位置の保持
+	VariableSet( g_key_celineX, UnitGetX( "PID_セリーヌ" ) )
+	VariableSet( g_key_celineZ, UnitGetZ( "PID_セリーヌ" ) )
+	
+end
+
+-- ---------------------------------------------------------
+
+function エンゲージ後に再生()
+	
+	Talk( "MID_EV3" )
+	
+end
+
+-- ---------------------------------------------------------
+
+function condition_チュートリアル_ワープライナ()
+	
+	-- 再生済みの場合
+	if VariableGet( g_key_tutorial_warp ) != 0 then
+		return false
+	end
+	
+	-- クロエとルイを救出しよう！と言える状況かチェック
+	if condition_救助可能() then
+		return true
+	end
+	
+	return false
+	
+end
+
+function condition_救助可能()
+	
+	-- クロエやルイと会話済みの場合は、救出後とみなす
+	if		VariableGet( g_key_talk_chloe ) != 0
+		and	VariableGet( g_key_talk_louis ) != 0 then
+			return false
+	end
+	
+	-- ――――――――――――――――――――――
+	
+	-- セリーヌの初期位置取得
+	local x_celine = VariableGet( g_key_celineX )
+	local z_celine = VariableGet( g_key_celineZ )
+	
+	-- ――――――――――――――――――――――
+	
+	local enemy = ForceUnitGetFirst(FORCE_ENEMY)
+	while enemy != nil do
+		
+		local x_enemy = UnitGetX( enemy )
+		local z_enemy = UnitGetZ( enemy )
+		local _dist = 二点間距離(x_celine, z_celine, x_enemy, z_enemy)
+		
+		-- ６マス < セリーヌとの距離 <= １６マス の敵を列挙（移動４、ワープ１０、射程２）
+		if ( 6 < _dist ) and ( _dist <= 16 ) then
+			
+			-- 救出関係の位置か
+			if		( UnitExistOnMap("PID_ルイ")	and ( VariableGet( g_key_talk_louis ) == 0 ) and condition_救助距離( x_celine, z_celine, x_enemy, z_enemy, "PID_ルイ" ) )
+				or	( UnitExistOnMap("PID_クロエ")	and	( VariableGet( g_key_talk_chloe ) == 0 ) and condition_救助距離( x_celine, z_celine, x_enemy, z_enemy, "PID_クロエ" ) ) then
+				
+				-- 対象の周囲２マスをチェック
+				if condition_ワープ攻撃可能( x_celine, z_celine, x_enemy, z_enemy ) then
+					return true
+				end
+				
+			end
+			
+		end
+		
+		enemy = ForceUnitGetNext( enemy )
+	end
+	
+	-- ――――――――――――――――――――――
+	
+	return false
+	
+end
+
+function condition_救助距離( x_celine, z_celine, x_enemy, z_enemy, pid )
+	
+	-- 敵―救出対象が一定以内
+	-- 自分―敵が一定以上
+	-- 自分―救出対象より、敵―救出対象の方が近い
+	
+	x_unit = UnitGetX( pid )
+	z_unit = UnitGetZ( pid )
+	
+	local dist_C_U = 二点間距離(x_celine,	z_celine,	x_unit,		z_unit)
+	local dist_U_E = 二点間距離(x_unit,		z_unit,		x_enemy,	z_enemy)
+	
+	if ( dist_U_E <= 5 ) and ( dist_U_E < dist_C_U ) then
+		return true
+	end
+	
+	return false
+	
+end
+
+function condition_ワープ攻撃可能( x_celine, z_celine, x_enemy, z_enemy )
+	
+	for z = -2, 2 do
+		for x = -2, 2 do
+			
+			local _x = x_enemy + x
+			local _z = z_enemy + z
+			
+			-- マップ範囲内
+			if ( 0 < _z ) and ( _z < g_map_height ) and ( 0 < _x ) and ( _x < g_map_width ) then
+				
+				-- ワープ範囲内
+				if 二点間距離(x_celine, z_celine, _x, _z) <= 14 then
+					
+					-- 周囲２マスか
+					local abs = math.abs( z ) + math.abs( x )
+					if ( abs == 1 ) or ( abs == 2 ) then
+						
+						-- ユニットがいない
+						if UnitGetByPos( _x, _z ) == nil then
+							
+							-- 移動可能
+							local cost = TerrainGetMoveCost( _x, _z )
+							if ( cost == "COST_平地" ) or ( cost == "COST_林" ) or ( cost == "COST_浅瀬" ) then
+								
+								return true
+								
+							end
+							
+						end
+						
+					end
+					
+				end
+				
+			end
+			
+		end
+	end
+	
+	return false
+	
+end
+
+function チュートリアル_ワープライナ()
+	
+	--[[
+	local x = UnitGetX( "PID_ルイ" ) + UnitGetX( "PID_クロエ" )
+	local z = UnitGetZ( "PID_ルイ" ) + UnitGetZ( "PID_クロエ" )
+	CursorSetPos( math.floor( x / 2 ), math.floor( z / 2 ) )
+	MapCameraWait()
+	]]
+	
+	Talk( "MID_EV11" )
+	VariableSet( g_key_tutorial_warp, 1 )
+	
+end
+
+-- ---------------------------------------------------------
+
+function 青軍２ターン直前()
+	-- 蛮族
+	Dispos("Bandit", DISPOS_FLAG_FOCUS)
+	Yield()
+	WaitTime(0.5)
+	Talk("MID_EV8")
+	
+	-- 竜の時水晶
+	CursorSetPos_FromPid( g_pid_lueur )
+	Talk("MID_EV9")
+	SoundPostEvent("ItemGet_Important")
+	Dialog( "MID_TUT_NAVI_M004_TIMECRYSTAL" )
+	Tutorial( "TUTID_竜の時水晶" )
+
+	-- 巻き戻し使える
+	MapHistoryRewindEnable()
+end
+
+-- ---------------------------------------------------------
+
+function 民家１訪問イベント()
+	Talk("MID_EV5")
+	ItemGain(MindGetUnit(), "IID_手槍")
+end
+
+-- ---------------------------------------------------------
+
+function 民家２訪問イベント()
+	Talk("MID_EV6")
+	ItemGain(MindGetUnit(), "IID_2000G")
+	
+	-- 蛮族のAIを変更
+	local pid = "PID_M004_蛮族"
+	if UnitExistOnMap(pid) then
+		AiSetSequence(pid, AI_ORDER_MIND, "AI_MI_Village", "pos(7,4)")
+		AiSetSequence(pid, AI_ORDER_MOVE, "AI_MV_VillageToAttack", "pos(7,4)")
+	end
+end
+
+-- ---------------------------------------------------------
+
+function 増援４ターン目()
+	CursorSetPos_FromPid("M004_イルシオン兵_ボス")
+	Talk("MID_EV7")
+	
+	CursorSetPos( 13, 15 )
+	MapCameraWait()
+	
+	Dispos("Event1", DISPOS_FLAG_FORCED)
 	Yield()
 	WaitTime(0.5)
 	
-	-- Talk("MID_EV2")
-	
-	UnitJoin( "PID_アルフレッド", "PID_エーティエ", "PID_ブシュロン" )
-	
+	Tutorial( "TUTID_増援" )
 end
 
 -- ---------------------------------------------------------
 
-function チュートリアル_チェインアタック(mid, message)
-	-- CursorSetPos_FromPid(MindGetUnit())
-	-- MapCameraWait()
-	
-	-- Talk("MID_EV3")
-
-	-- Tutorial( "TUTID_連携スタイル" )
+function 増援５ターン目()
+	Dispos("Event2", DISPOS_FLAG_FOCUS)
+	Yield()
+	-- WaitTime(0.5)
+	Dispos("Event3", DISPOS_FLAG_FOCUS)
+	Yield()
+	-- WaitTime(0.5)
 end
 
 -- ---------------------------------------------------------
 
-function チュートリアル_特効()
-	-- CursorSetPos_FromPid(MindGetUnit())
-	-- MapCameraWait()
+function 増援７ターン目()
+	Dispos("Event4", DISPOS_FLAG_FOCUS)
+	Yield()
+	WaitTime(0.5)
+end
+
+-- ---------------------------------------------------------
+
+function ボス側近_必殺調整スキル変更()
+	local pid = "PID_M004_異形兵_ボス側近"
 	
-	-- Talk("MID_EV4")
-	
-	-- CursorAnimeCreate_FromPid("PID_M003_イルシオン兵_ランスペガサス_イベント")
-	-- Talk("MID_EV5")
-	-- CursorAnimeDelete()
-	
-	-- Tutorial( "TUTID_特効" )
+	if UnitExistOnMap( pid ) then
+		スキル解除( pid, "SID_必殺０" )
+	end
 end
 
 -- ---------------------------------------------------------
@@ -147,30 +560,15 @@ end
 function MapEnding()
 	Log("MapEnding")
 	
-	CursorSetPos_FromPid(g_pid_lueue)
-	--Talk("MID_ED1")
+	if VariableGet( g_key_turn2event ) == 0 then
+		MapHistoryRewindEnable()
+	end
 end
 
 function Ending()
-	
 	Log("Ending")
-	
-	-- PuppetDemo("M003", "MID_ED1")
-	
-	-- Movie("Scene30")
-	-- SkipEscape()
-	
-	-- FadeInAndWait(FADE_FAST)
-	-- 	Movie("S09")
-	-- 	SkipEscape()
-	-- FadeOutAndWait(FADE_FAST)
-	
-	-- Movie("Scene06")
-	-- SkipEscape()	
 end
 
 function GameOver()
-	
 	Log("GameOver")
-	
 end
