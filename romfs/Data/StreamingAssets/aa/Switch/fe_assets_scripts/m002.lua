@@ -486,7 +486,7 @@ function 残った敵の削除とルミエルのコメント()
 		MapCameraWait()
 	end
 	
-	Talk("MID_EV7")
+	-- Talk("MID_EV7")
 	
 	VariableSet( "行動後フェイズ終了", 0 )
 	VariableSet( g_key_enemyDelete, 1 )
@@ -522,7 +522,7 @@ function 一回戦終了()
 	VariableSet( "敵軍フェイズスキップ", 1 )
 	VariableSet( "行動後フェイズ終了", 1 )
 	
-	FadeOutAndWait(FADE_NORMAL)
+	-- FadeOutAndWait(FADE_NORMAL)
 	
 	-- 前半戦ルミエル消去
 	UnitDelete( g_pid_rumiere )
@@ -687,7 +687,7 @@ function ルミエル出撃イベント()
 	-- CursorSetPos_FromPid(g_pid_rumiere)
 	-- Talk("MID_EV11")
 	
-	-- UnitSetEngaging(g_pid_rumiere, true)
+	UnitSetEngaging(g_pid_rumiere, true)
 	
 	VariableSet( g_key_rumiere_runned, 1 )
 	
