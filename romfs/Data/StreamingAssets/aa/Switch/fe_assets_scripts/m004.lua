@@ -51,15 +51,15 @@ function イベント登録()
 	
 	EventEntryTurn(進撃開始直後イベント, 1, 1,  FORCE_PLAYER)
 	
-	--EventEntryTurn(勝利条件_敵将フォーカス, 1, 1, FORCE_PLAYER, condition_true, "PID_M004_イルシオン兵_ボス")
+	EventEntryTurn(勝利条件_敵将フォーカス, 1, 1, FORCE_PLAYER, condition_true, "PID_M004_イルシオン兵_ボス")
 	
-	-- EventEntryTurnAfter(Tutorial, 1, 1, FORCE_PLAYER, condition_true, "TUTID_戦死者の魂" )
+	EventEntryTurnAfter(Tutorial, 1, 1, FORCE_PLAYER, condition_true, "TUTID_戦死者の魂" )
 	
 	EventEntryPickup(チュートリアル_訪問, "", condition_チュートリアル_訪問)
 	
 	EventEntryPickup(ピックアップ_セリーヌ, "PID_セリーヌ", condition_ピックアップ_セリーヌ)
 	EventEntryEngageAfter(エンゲージ後に再生, "PID_セリーヌ", "セリーヌ・セリカエンゲージ後_済")
-	--EventEntryUnitCommandInterrupt(チュートリアル_ワープライナ, "PID_セリーヌ", "エンゲージ技", condition_チュートリアル_ワープライナ)
+	EventEntryUnitCommandInterrupt(チュートリアル_ワープライナ, "PID_セリーヌ", "エンゲージ技", condition_チュートリアル_ワープライナ)
 	
 	EventEntryTurn(青軍２ターン直前, 2, 2,  FORCE_PLAYER, g_key_turn2event)
 	
@@ -70,8 +70,8 @@ function イベント登録()
 	EventEntryDestroy(民家破壊_フラグセット, 14, 10, 14, 10,	13, 11, 15, 13,		g_key_house2destroy)
 	
 	-- キャラ同士の会話
-	-- EventEntryTalk(Talk, "PID_セリーヌ", FORCE_PLAYER, "PID_クロエ",	FORCE_PLAYER, true, g_key_talk_chloe,	"MID_TK1")
-	-- EventEntryTalk(Talk, "PID_セリーヌ", FORCE_PLAYER, "PID_ルイ",		FORCE_PLAYER, true, g_key_talk_louis,	"MID_TK2")
+	EventEntryTalk(Talk, "PID_セリーヌ", FORCE_PLAYER, "PID_クロエ",	FORCE_PLAYER, true, g_key_talk_chloe,	"MID_TK1")
+	EventEntryTalk(Talk, "PID_セリーヌ", FORCE_PLAYER, "PID_ルイ",		FORCE_PLAYER, true, g_key_talk_louis,	"MID_TK2")
 	
 	-- 増援
 	EventEntryTurn(増援４ターン目, 4, 4, FORCE_PLAYER)
@@ -79,8 +79,8 @@ function イベント登録()
 	EventEntryTurn(増援７ターン目, 7, 7, FORCE_PLAYER, モードはルナティック)
 	
 	-- ボス
-	-- EventEntryBattleTalk(Talk, "", FORCE_PLAYER, "PID_M004_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_済", "MID_BT1")
-	-- EventEntryDie(Talk, "PID_M004_イルシオン兵_ボス", FORCE_ENEMY, condition_true, "MID_BT2")
+	EventEntryBattleTalk(Talk, "", FORCE_PLAYER, "PID_M004_イルシオン兵_ボス", FORCE_ENEMY, true, "戦闘前会話_ボス_済", "MID_BT1")
+	EventEntryDie(Talk, "PID_M004_イルシオン兵_ボス", FORCE_ENEMY, condition_true, "MID_BT2")
 	
 	EventEntryBattleAfter(ボス側近_必殺調整スキル変更, "PID_M004_異形兵_ボス側近", FORCE_ENEMY, "", FORCE_PLAYER, false, "戦闘後_ボス側近必殺調整_済")
 	
@@ -98,7 +98,7 @@ function Opening()
 	
 	Log("Opening")
 	
-	-- PuppetDemo("M004", "MID_OP1")
+	PuppetDemo("M004", "MID_OP1")
 	
 end
 
@@ -109,64 +109,63 @@ function MapOpening()
 	-- -----------------------------------
 	
 	-- リュール達一旦退避
-	-- UnitSetPosFromPos(3,3,3,2)
-	-- UnitSetPosFromPos(4,3,4,2)
-	-- UnitSetPosFromPos(2,4,2,3)
-	-- UnitSetPosFromPos(3,4,3,3)
-	-- UnitSetPosFromPos(4,4,4,3)
-	-- UnitSetPosFromPos(3,5,3,4)
-	-- UnitSetPosFromPos(4,5,4,4)
+	UnitSetPosFromPos(3,3,3,2)
+	UnitSetPosFromPos(4,3,4,2)
+	UnitSetPosFromPos(2,4,2,3)
+	UnitSetPosFromPos(3,4,3,3)
+	UnitSetPosFromPos(4,4,4,3)
+	UnitSetPosFromPos(3,5,3,4)
+	UnitSetPosFromPos(4,5,4,4)
 	
-	-- CursorSetPos(4,5)
-	-- CursorSetDistanceMode(CURSOR_DISTANCE_NEAR)
-	-- MapCameraWait()
-	-- FadeIn(FADE_NORMAL)
-	-- WaitTime(0.1)
+	CursorSetPos(4,5)
+	CursorSetDistanceMode(CURSOR_DISTANCE_NEAR)
+	MapCameraWait()
+	FadeIn(FADE_NORMAL)
+	WaitTime(0.1)
 	
-	-- -- リュール達登場
-	-- UnitMovePosFromPos(4,4,4,5)
-	-- UnitMovePosFromPos(3,4,3,5)
-	-- UnitMovePosFromPos(4,3,4,4)
-	-- UnitMovePosFromPos(3,3,3,4)
-	-- UnitMovePosFromPos(2,3,2,4)
-	-- UnitMovePosFromPos(4,2,4,3)
-	-- UnitMovePosFromPos(3,2,3,3)
+	-- リュール達登場
+	UnitMovePosFromPos(4,4,4,5)
+	UnitMovePosFromPos(3,4,3,5)
+	UnitMovePosFromPos(4,3,4,4)
+	UnitMovePosFromPos(3,3,3,4)
+	UnitMovePosFromPos(2,3,2,4)
+	UnitMovePosFromPos(4,2,4,3)
+	UnitMovePosFromPos(3,2,3,3)
 	
-	-- UnitMoveWait()
-	-- FadeWait()
+	UnitMoveWait()
+	FadeWait()
 	
-	-- SoundPostEvent("BGM_Evt_Danger1")
+	SoundPostEvent("BGM_Evt_Danger1")
 	
-	-- Talk("MID_OP2")
+	Talk("MID_OP2")
 	
-	-- CursorSetPos(6, 12)
-	-- MapCameraWait()
+	CursorSetPos(6, 12)
+	MapCameraWait()
 	
-	-- WaitTime(1.0)
+	WaitTime(1.0)
 	
-	-- Talk("MID_OP3")
+	Talk("MID_OP3")
 	
 	-- -----------------------------------
 	
-	-- CursorSetPos_FromPid_DistanceModeNear("PID_セリーヌ")
+	CursorSetPos_FromPid_DistanceModeNear("PID_セリーヌ")
 	
-	-- FadeOutAndWait(FADE_FAST)
-		-- SkipEscape()
-		-- Movie("Scene07")
+	FadeOutAndWait(FADE_FAST)
+		SkipEscape()
+		Movie("Scene07")
 		
-		-- delete green celine
 		if UnitExistOnMap("PID_セリーヌ") then
 			UnitDelete("PID_セリーヌ")
 		end
-	-- FadeInAndWait(FADE_FAST)
+	FadeInAndWait(FADE_FAST)
 	
 	-- -----------------------------------
 	
-	-- SoundPostEvent("BGM_Evt_Danger1_End")
+	SoundPostEvent("BGM_Evt_Danger1_End")
 	
-	-- CursorSetPos_FromPid( g_pid_lueur )
+	CursorSetPos_FromPid( g_pid_lueur )
 	
-	-- SoundPostEvent("BGM_Evt_Danger1_Stop_1000")
+	SoundPostEvent("BGM_Evt_Danger1_Stop_1000")
 end
 
 -- ---------------------------------------------------------
@@ -178,23 +177,23 @@ end
 
 function セリーヌ合流とセリカ顕現()
 	
-	-- CursorSetPos(2,4)
-	-- MapCameraWait()
+	CursorSetPos(2,4)
+	MapCameraWait()
 	
 	-- セリーヌ登場
-	-- Dispos("Celine", DISPOS_FLAG_NONE)
-	-- Yield()
+	Dispos("Celine", DISPOS_FLAG_NONE)
+	Yield()
 	
 	味方がセリーヌの方を向く()
 	
-	-- Talk("MID_OP5")
+	Talk("MID_OP5")
 	
-	-- Movie("Kengen02")
-	-- SkipEscape()
+	Movie("Kengen02")
+	SkipEscape()
 	
 	-- 顕現前の会話内でフェードアウトしているので強制的にフェードを戻す
-	-- FadeInAndWait(FADE_FAST)
-	-- Talk("MID_OP6")
+	FadeInAndWait(FADE_FAST)
+	Talk("MID_OP6")
 	
 	-- 神将作成・バディ化
 	UnitCreateGodUnit("PID_セリーヌ", "GID_セリカ")
@@ -209,7 +208,7 @@ function セリーヌ合流とセリカ顕現()
 	
 	UnitRotation("PID_セリーヌ", ROTATE_UP)
 	UnitMoveWait()
-	-- WaitTime(1.0)
+	WaitTime(1.0)
 	
 end
 
@@ -228,15 +227,15 @@ end
 
 function クロエとルイの会話()
 	
-	-- CursorSetPos(13,9)
-	-- MapCameraWait()
+	CursorSetPos(13,9)
+	MapCameraWait()
 	
-	-- Talk("MID_EV1")
+	Talk("MID_EV1")
 	
-	-- WaitTime(0.5)
+	WaitTime(0.5)
 	
-	-- Tutorial( "TUTID_重装スタイル" ) -- 通知のみ
-	-- Tutorial( "TUTID_飛行スタイル" ) -- 通知のみ
+	Tutorial( "TUTID_重装スタイル" ) -- 通知のみ
+	Tutorial( "TUTID_飛行スタイル" ) -- 通知のみ
 	
 end
 
@@ -270,11 +269,11 @@ end
 
 function チュートリアル_訪問()
 	
-	-- MapCameraWait()
-	-- CursorAnimeCreate(7, 4)
-	-- Talk("MID_EV4")
-	-- CursorAnimeDelete()
-	-- Tutorial( "TUTID_訪問" )
+	MapCameraWait()
+	CursorAnimeCreate(7, 4)
+	Talk("MID_EV4")
+	CursorAnimeDelete()
+	Tutorial( "TUTID_訪問" )
 	
 	VariableSet( g_key_tutorial_visit, 1 )
 	
@@ -301,12 +300,12 @@ end
 function ピックアップ_セリーヌ()
 	
 	if VariableGet( g_key_pickupCeline ) == 0 then
-		-- MapCameraWait()
-		-- Talk("MID_EV2")
+		MapCameraWait()
+		Talk("MID_EV2")
 		
-		-- Tutorial( "TUTID_紋章士セリカ" )
+		Tutorial( "TUTID_紋章士セリカ" )
 		
-		-- Talk("MID_EV10")
+		Talk("MID_EV10")
 		
 		VariableSet( g_key_pickupCeline, 1 )
 	end
@@ -322,7 +321,7 @@ end
 
 function エンゲージ後に再生()
 	
-	-- Talk( "MID_EV3" )
+	Talk( "MID_EV3" )
 	
 end
 
@@ -465,7 +464,7 @@ function チュートリアル_ワープライナ()
 	MapCameraWait()
 	]]
 	
-	-- Talk( "MID_EV11" )
+	Talk( "MID_EV11" )
 	VariableSet( g_key_tutorial_warp, 1 )
 	
 end
@@ -476,15 +475,15 @@ function 青軍２ターン直前()
 	-- 蛮族
 	Dispos("Bandit", DISPOS_FLAG_FOCUS)
 	Yield()
-	-- WaitTime(0.5)
-	-- Talk("MID_EV8")
+	WaitTime(0.5)
+	Talk("MID_EV8")
 	
 	-- 竜の時水晶
-	-- CursorSetPos_FromPid( g_pid_lueur )
-	-- Talk("MID_EV9")
+	CursorSetPos_FromPid( g_pid_lueur )
+	Talk("MID_EV9")
 	SoundPostEvent("ItemGet_Important")
-	-- Dialog( "MID_TUT_NAVI_M004_TIMECRYSTAL" )
-	-- Tutorial( "TUTID_竜の時水晶" )
+	Dialog( "MID_TUT_NAVI_M004_TIMECRYSTAL" )
+	Tutorial( "TUTID_竜の時水晶" )
 
 	-- 巻き戻し使える
 	MapHistoryRewindEnable()
@@ -493,14 +492,14 @@ end
 -- ---------------------------------------------------------
 
 function 民家１訪問イベント()
-	-- Talk("MID_EV5")
+	Talk("MID_EV5")
 	ItemGain(MindGetUnit(), "IID_手槍")
 end
 
 -- ---------------------------------------------------------
 
 function 民家２訪問イベント()
-	-- Talk("MID_EV6")
+	Talk("MID_EV6")
 	ItemGain(MindGetUnit(), "IID_2000G")
 	
 	-- 蛮族のAIを変更
@@ -514,17 +513,17 @@ end
 -- ---------------------------------------------------------
 
 function 増援４ターン目()
-	-- CursorSetPos_FromPid("M004_イルシオン兵_ボス")
-	-- Talk("MID_EV7")
+	CursorSetPos_FromPid("M004_イルシオン兵_ボス")
+	Talk("MID_EV7")
 	
 	CursorSetPos( 13, 15 )
 	MapCameraWait()
 	
 	Dispos("Event1", DISPOS_FLAG_FORCED)
 	Yield()
-	-- WaitTime(0.5)
+	WaitTime(0.5)
 	
-	-- Tutorial( "TUTID_増援" )
+	Tutorial( "TUTID_増援" )
 end
 
 -- ---------------------------------------------------------
@@ -543,7 +542,7 @@ end
 function 増援７ターン目()
 	Dispos("Event4", DISPOS_FLAG_FOCUS)
 	Yield()
-	-- WaitTime(0.5)
+	WaitTime(0.5)
 end
 
 -- ---------------------------------------------------------
