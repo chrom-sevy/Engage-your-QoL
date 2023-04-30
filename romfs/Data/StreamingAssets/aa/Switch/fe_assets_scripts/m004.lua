@@ -51,7 +51,7 @@ function イベント登録()
 	
 	EventEntryTurn(進撃開始直後イベント, 1, 1,  FORCE_PLAYER)
 	
-	EventEntryTurn(勝利条件_敵将フォーカス, 1, 1, FORCE_PLAYER, condition_true, "PID_M004_イルシオン兵_ボス")
+	--EventEntryTurn(勝利条件_敵将フォーカス, 1, 1, FORCE_PLAYER, condition_true, "PID_M004_イルシオン兵_ボス")
 	
 	-- EventEntryTurnAfter(Tutorial, 1, 1, FORCE_PLAYER, condition_true, "TUTID_戦死者の魂" )
 	
@@ -154,9 +154,10 @@ function MapOpening()
 		-- SkipEscape()
 		-- Movie("Scene07")
 		
-		-- if UnitExistOnMap("PID_セリーヌ") then
-		-- 	UnitDelete("PID_セリーヌ")
-		-- end
+		-- delete green celine
+		if UnitExistOnMap("PID_セリーヌ") then
+			UnitDelete("PID_セリーヌ")
+		end
 	-- FadeInAndWait(FADE_FAST)
 	
 	-- -----------------------------------
@@ -186,14 +187,14 @@ function セリーヌ合流とセリカ顕現()
 	
 	味方がセリーヌの方を向く()
 	
-	Talk("MID_OP5")
+	-- Talk("MID_OP5")
 	
-	Movie("Kengen02")
-	SkipEscape()
+	-- Movie("Kengen02")
+	-- SkipEscape()
 	
 	-- 顕現前の会話内でフェードアウトしているので強制的にフェードを戻す
-	FadeInAndWait(FADE_FAST)
-	Talk("MID_OP6")
+	-- FadeInAndWait(FADE_FAST)
+	-- Talk("MID_OP6")
 	
 	-- 神将作成・バディ化
 	UnitCreateGodUnit("PID_セリーヌ", "GID_セリカ")
@@ -207,8 +208,8 @@ function セリーヌ合流とセリカ顕現()
 	UnitJoin( "PID_セリーヌ", "PID_ルイ", "PID_クロエ" )
 	
 	UnitRotation("PID_セリーヌ", ROTATE_UP)
-	UnitMoveWait()
-	WaitTime(1.0)
+	-- UnitMoveWait()
+	-- WaitTime(1.0)
 	
 end
 
@@ -521,7 +522,7 @@ function 増援４ターン目()
 	
 	Dispos("Event1", DISPOS_FLAG_FORCED)
 	Yield()
-	WaitTime(0.5)
+	-- WaitTime(0.5)
 	
 	-- Tutorial( "TUTID_増援" )
 end
@@ -542,7 +543,7 @@ end
 function 増援７ターン目()
 	Dispos("Event4", DISPOS_FLAG_FOCUS)
 	Yield()
-	WaitTime(0.5)
+	-- WaitTime(0.5)
 end
 
 -- ---------------------------------------------------------
