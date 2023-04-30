@@ -182,8 +182,8 @@ function セリーヌ合流とセリカ顕現()
 	-- MapCameraWait()
 	
 	-- セリーヌ登場
-	Dispos("Celine", DISPOS_FLAG_NONE)
-	Yield()
+	-- Dispos("Celine", DISPOS_FLAG_NONE)
+	-- Yield()
 	
 	味方がセリーヌの方を向く()
 	
@@ -208,7 +208,7 @@ function セリーヌ合流とセリカ顕現()
 	UnitJoin( "PID_セリーヌ", "PID_ルイ", "PID_クロエ" )
 	
 	UnitRotation("PID_セリーヌ", ROTATE_UP)
-	-- UnitMoveWait()
+	UnitMoveWait()
 	-- WaitTime(1.0)
 	
 end
